@@ -29,6 +29,8 @@ async function postAction(params){
 }
 function nilData(id){return FIXED.nils.find(n=>Number(n.id)===Number(id));}
 function challengeData(id){return [...CHALLENGES.standard_challenges,...CHALLENGES.special_challenges].find(c=>c.id===id);}
+function challengeLevelData(challengeId,levelId){const c=challengeData(challengeId);return c&&c.levels?c.levels.find(l=>l.id===levelId):null;}
+function challengeLevelLabel(challengeId,levelId){const c=challengeData(challengeId),l=challengeLevelData(challengeId,levelId);return c&&l?`${c.title} ${l.label}`:(c?c.title:challengeId);}
 function esc(x){return String(x??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
 function fmt(n,d=1){return Number(n||0).toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d});}
 function fmtTime(iso){if(!iso)return '—';return new Date(iso).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});}
@@ -38,13 +40,22 @@ function ownerOf(state,id){const c=state.claims[String(Number(id))];return c?c.t
 function activeCard(state,id){return state.board.find(c=>Number(c.nilId)===Number(id));}
 function cardChallengeHtml(card,myTeam){
   const c=challengeData(card.challengeId);if(!c)return '<div class="challenge-title">Unknown challenge</div>';
-  let html=`<div class="challenge-title">${esc(c.title)}</div><div class="sub">${esc(c.description||'')}</div>`;
-  if(c.levels&&c.levels.length){html+='<div class="level-list">'+c.levels.map(l=>{let status='';if(myTeam&&myTeam.inventory&&myTeam.inventory.standard[c.id])status=myTeam.inventory.standard[c.id][l.id]||'';return `<div class="level ${esc(status)}"><strong>${esc(l.label)}</strong>: ${esc(l.requirement)}</div>`;}).join('')+'</div>';}
+  let html=`<div class="challenge-title">${esc(c.title)}</div>`;
+  html+=`<div class="challenge-summary">${esc(c.description||'')}</div>`;
   const detailItems=c.items||c.options||[];
-  if(detailItems.length || c.proof || c.reference_url){
-    html+='<details class="section-note"><summary>Details / proof</summary>';
-    if(detailItems.length) html+='<ul>'+detailItems.map(x=>`<li>${esc(x)}</li>`).join('')+'</ul>';
-    if(c.proof) html+=`<p>${esc(c.proof)}</p>`;
+  const hasDetails=(c.levels&&c.levels.length)||detailItems.length||c.proof||c.reference_url;
+  if(hasDetails){
+    html+='<details class="challenge-details"><summary>Levels & details</summary>';
+    if(c.description) html+=`<p class="detail-description">${esc(c.description)}</p>`;
+    if(c.levels&&c.levels.length){
+      html+='<div class="level-list">'+c.levels.map(l=>{
+        let status='';
+        if(myTeam&&myTeam.inventory&&myTeam.inventory.standard[c.id])status=myTeam.inventory.standard[c.id][l.id]||'';
+        return `<div class="level ${esc(status)}"><strong>${esc(l.label)}</strong>: ${esc(l.requirement)}</div>`;
+      }).join('')+'</div>';
+    }
+    if(detailItems.length) html+='<ul class="detail-list">'+detailItems.map(x=>`<li>${esc(x)}</li>`).join('')+'</ul>';
+    if(c.proof) html+=`<p class="section-note"><strong>Proof:</strong> ${esc(c.proof)}</p>`;
     if(c.reference_url) html+=`<p><a href="${esc(c.reference_url)}" target="_blank" rel="noopener">Reference list</a></p>`;
     html+='</details>';
   }
@@ -58,16 +69,16 @@ function renderBonus(state,el){
   function cls(key,t){const x=b[key];return x.tied?'':(x.leaders[0]===t?'leader':'');}
   function val(metric,t){if(metric==='totalAreaKm2')return fmt(m[t][metric],2)+' km²';if(metric==='averageDensity')return Math.round(m[t][metric]).toLocaleString()+'/km²';return m[t][metric];}
   const rows=[['Municipi','municipiosRepresented','most_game_municipi'],['Area','totalAreaKm2','largest_total_area'],['Avg. density','averageDensity','highest_average_population_density'],['Extremes','extremeCompletions','most_extreme_completions']];
-  let h='<table class="bonus-table"><thead><tr><th>Bonus</th>'+GAME.teams.map(t=>`<th>${esc(t.name)}</th>`).join('')+'</tr></thead><tbody>';
-  rows.forEach(([label,metric,key])=>{h+=`<tr><td>${label}${b[key].tied?' <span class="tied">TIED</span>':''}</td>`+GAME.teams.map(t=>`<td class="${cls(key,t.id)}">${val(metric,t.id)}</td>`).join('')+'</tr>';});h+='</tbody></table>';
+  let h='<div class="table-scroll"><table class="bonus-table"><thead><tr><th>Bonus</th>'+GAME.teams.map(t=>`<th>${esc(t.name.replace('Team ',''))}</th>`).join('')+'</tr></thead><tbody>';
+  rows.forEach(([label,metric,key])=>{h+=`<tr><td>${label}${b[key].tied?' <span class="tied">TIED</span>':''}</td>`+GAME.teams.map(t=>`<td class="${cls(key,t.id)}">${val(metric,t.id)}</td>`).join('')+'</tr>';});h+='</tbody></table></div>';
   h+='<h3>Municipio coverage</h3><div class="municipio-grid"><div class="head">M</div>'+GAME.teams.map(t=>`<div class="head">${t.name.replace('Team ','')}</div>`).join('');
   for(let mun=1;mun<=9;mun++){h+=`<div class="head">${mun}</div>`+GAME.teams.map(t=>`<div>${m[t.id].municipioCounts[mun]||0}</div>`).join('');}h+='</div>';el.innerHTML=h;
 }
 function createMap(el,state){
-  const map=L.map(el).setView([45.4642,9.19],12);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(map);
-  const layer=L.geoJSON(GEO,{style:f=>styleFeature(f,state),onEachFeature:(f,l)=>bindFeature(f,l,state)}).addTo(map);map.fitBounds(layer.getBounds(),{padding:[8,8]});return {map,layer};
+  const map=L.map(el,{zoomControl:true}).setView([45.4642,9.19],12);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(map);
+  const layer=L.geoJSON(GEO,{style:f=>styleFeature(f,state),onEachFeature:(f,l)=>bindFeature(f,l,state)}).addTo(map);map.fitBounds(layer.getBounds(),{padding:[8,8]});setTimeout(()=>map.invalidateSize(),50);return {map,layer};
 }
 function styleFeature(f,state){const id=Number(f.properties.ID_NIL);const owner=ownerOf(state,id);const active=!!activeCard(state,id);return {fillColor:owner?TEAM_COLORS[owner]:UNCLAIMED,fillOpacity:owner ? .72 : .34,color:active?ACTIVE:'#6b7280',weight:active?4:1.2,opacity:1};}
 function bindFeature(f,l,state){const id=Number(f.properties.ID_NIL),n=nilData(id),owner=ownerOf(state,id),card=activeCard(state,id);let h=`<strong>${esc(n.name)}</strong><br>Municipio ${n.game_municipio}<br>`;h+=owner?`Owner: ${esc(teamName(owner))}<br>`:'Unclaimed<br>';if(card)h+=`<strong>ACTIVE</strong>: ${esc(challengeData(card.challengeId).title)}<br>`;h+=`Area: ${fmt(n.area_km2,2)} km²<br>Population: ${Number(n.population_2025).toLocaleString()}<br>Density: ${Math.round(n.population_density_per_km2).toLocaleString()}/km²`;l.bindPopup(h);}
-function updateMap(mapObj,state){mapObj.layer.eachLayer(l=>{l.setStyle(styleFeature(l.feature,state));bindFeature(l.feature,l,state);});}
+function updateMap(mapObj,state){mapObj.layer.eachLayer(l=>{l.setStyle(styleFeature(l.feature,state));bindFeature(l.feature,l,state);});setTimeout(()=>mapObj.map.invalidateSize(),10);}
 function renderLog(state,el){el.innerHTML=(state.recentLog||[]).slice().reverse().map(x=>`<div class="log-row"><strong>${esc(fmtTime(x.at))}</strong> ${x.teamId?esc(teamName(x.teamId))+': ':''}${esc(x.text||x.type)}</div>`).join('')||'<div class="sub">No log entries yet.</div>';}

@@ -1,8 +1,24 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Milano Quartieri – Team</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><link rel="stylesheet" href="styles.css"></head><body>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Milano Quartieri – Team</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><link rel="stylesheet" href="styles.css?v=0.2"></head><body>
 <header class="topbar"><div class="brand">Milano Quartieri Challengi</div><div id="teamBadge" class="team-badge">Team</div></header>
-<main class="container"><div id="configWarning" class="warning-box hidden"></div><div class="statusbar"><span id="conn" class="pill">Connecting…</span><span id="phase" class="pill">Phase</span><span id="serverTime" class="pill"></span><span id="nextRefresh" class="pill"></span></div>
-<div class="panel"><h2>Live score</h2><div id="scores" class="score-grid"></div></div>
-<div class="grid"><section><div class="panel"><h2>Active NIL board</h2><div id="board" class="board"></div></div><div class="panel"><h2>Game map</h2><div id="map" class="map"></div></div></section>
-<aside><div class="panel"><h2>Bonus tracker</h2><div id="bonus"></div></div><div class="panel"><h2>Refresh & occupancy</h2><div id="refreshControls"></div></div><div class="panel"><h2>My challenge inventory</h2><div id="inventory"></div></div><div class="panel"><h2>Lunch</h2><div id="lunch"></div></div><div class="panel"><h2>Recent game log</h2><div id="log" class="log"></div></div></aside></div></main>
-<div id="claimModal" class="modal"><div class="modal-card"><div class="controls-row" style="justify-content:space-between"><h2 id="claimTitle">Submit claim</h2><button class="btn secondary" id="closeModal">Close</button></div><div id="claimBody"></div></div></div>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="backend-config.js"></script><script src="common.js"></script><script src="team.js"></script></body></html>
+<main class="container">
+  <div id="configWarning" class="warning-box hidden"></div>
+  <div class="statusbar"><span id="conn" class="pill">Connecting…</span><span id="phase" class="pill">Phase</span><span id="serverTime" class="pill"></span><span id="nextRefresh" class="pill"></span></div>
+  <div id="eventBanner" class="event-banner hidden" role="status" aria-live="polite"></div>
+  <div id="actionMessage" class="action-message hidden" role="status" aria-live="polite"></div>
+
+  <div class="panel map-panel"><h2>Game map</h2><div id="map" class="map"></div></div>
+  <div class="panel compact-panel"><h2>Live score</h2><div id="scores" class="score-grid"></div></div>
+
+  <div class="grid"><section>
+    <div class="panel"><h2>Active NIL board</h2><div id="board" class="board"></div></div>
+  </section>
+  <aside>
+    <div class="panel"><h2>Bonus tracker</h2><div id="bonus"></div></div>
+    <div class="panel"><h2>Refresh & occupancy</h2><div id="refreshControls"></div></div>
+    <div class="panel"><h2>My challenge inventory</h2><div id="inventory"></div></div>
+    <div class="panel"><h2>Lunch</h2><div id="lunch"></div></div>
+    <div class="panel"><h2>Recent game log</h2><div id="log" class="log"></div></div>
+  </aside></div>
+</main>
+<div id="claimModal" class="modal"><div class="modal-card"><div class="controls-row modal-head"><h2 id="claimTitle">Submit claim</h2><button class="btn secondary" id="closeModal">Close</button></div><div id="claimBody"></div></div></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="backend-config.js"></script><script src="common.js?v=0.2"></script><script src="team.js?v=0.2"></script></body></html>
