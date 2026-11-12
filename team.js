@@ -64,7 +64,8 @@ function renderInventory(){const my=STATE.myTeam;let h='<div class="table-scroll
 function renderLunch(){const my=STATE.myTeam;document.getElementById('lunch').innerHTML=`<div>Mandatory break: <strong>${my.lunchBreakComplete?'complete':'not yet recorded'}</strong></div><div>Have Lunch claim: <strong>${my.haveLunchComplete?'used':'available'}</strong></div>${!my.lunchBreakComplete?'<div class="actions"><button id="markLunch" class="btn secondary">Mark normal 30-minute lunch complete</button></div>':''}`;const b=document.getElementById('markLunch');if(b)b.onclick=()=>{if(confirm('Mark your mandatory normal lunch break complete?'))act({action:'markLunchBreak',team:TEAM_ID,key:TEAM_KEY},{success:'Lunch break marked complete.'});};}
 
 function seenNoticeIds(){try{return JSON.parse(localStorage.getItem('mq_seen_notices_'+TEAM_ID)||'[]');}catch(_e){return [];}}
-function markNoticeSeen(id){const seen=seenNoticeIds();if(!seen.includes(id))seen.push(id);localStorage.setItem('mq_seen_notices_'+TEAM_ID,JSON.stringify(seen.slice(-60)));}
+function markNoticeSeen(id){const seen=seenNoticeIds();if(!seen.includes(id))seen.push(id);localStorage.setItem('mq_seen_notices_'+TEAM_ID,JSON.stringify(seen.slice(-100)));}
+function markNoticesSeen(ids){(ids||[]).forEach(markNoticeSeen);}
 function noticeFromServer(n){
   if(n.kind==='refresh'){
     const removed=(n.removedNilIds||[]).map(id=>nilData(id)?.name).filter(Boolean),added=(n.addedNilIds||[]).map(id=>nilData(id)?.name).filter(Boolean),blocked=(n.blockedNilIds||[]).map(id=>nilData(id)?.name).filter(Boolean);
@@ -76,11 +77,10 @@ function noticeFromServer(n){
   }
   if(n.kind==='zombie'){
     const mine=(n.outcomes||[]).find(x=>x.teamId===TEAM_ID);
-    let text='';
-    if(mine&&mine.status==='restored') text=`Your team resurrected ${challengeLevelLabel(mine.challengeId,mine.levelId)}. It is available again in My challenge inventory.`;
-    else if(mine&&mine.status==='first_place') text='Your team received no restoration because it was tied for first place when the event fired.';
-    else if(mine&&mine.status==='no_eligible_used_standard_level') text='Your team was eligible to catch up, but had no used standard challenge level to resurrect. Walking Tour and Have Lunch do not count.';
-    else text='Night of the Living Challenges fired.';
+    let text='Night of the Living Challenges has been activated! ';
+    if(mine&&mine.status==='restored') text+=`Your team resurrected ${challengeLevelLabel(mine.challengeId,mine.levelId)}. It is available again in My challenge inventory.`;
+    else if(mine&&mine.status==='first_place') text+='Your team received no restoration because it was tied for first place when the event was activated.';
+    else if(mine&&mine.status==='no_eligible_used_standard_level') text+='Your team was eligible to catch up, but had no used standard challenge level to resurrect. Walking Tour and Have Lunch do not count.';
     const others=(n.restorations||[]).filter(x=>x.teamId!==TEAM_ID).map(x=>`${teamName(x.teamId)} resurrected ${challengeLevelLabel(x.challengeId,x.levelId)}`);
     if(others.length) text+=' '+others.join(' · ')+'.';
     return {id:n.id,at:n.at,kind:'zombie',title:'🧟 Night of the Living Challenges!',text};
@@ -88,32 +88,46 @@ function noticeFromServer(n){
   return null;
 }
 function noticeCandidates(){
-  const server=(STATE.notices||[]).map(noticeFromServer).filter(Boolean);
-  if(server.length) return server.sort((a,b)=>new Date(b.at)-new Date(a.at));
-  // Backward-compatible fallback for state created before v0.3 notices existed.
-  const out=[];
+  // Merge persistent server notices with derived fallbacks. In v0.3 the old logic
+  // used one OR the other, so an existing Zombie notice could accidentally suppress
+  // a refresh fallback. Merging makes the banner path resilient to older live state.
+  const byId={};
+  (STATE.notices||[]).map(noticeFromServer).filter(Boolean).forEach(n=>byId[n.id]=n);
   const r=STATE.lastRefreshResult;
   if(r&&r.processedAt){
-    const removed=(r.removedNilIds||[]).map(id=>nilData(id)?.name).filter(Boolean),added=(r.addedNilIds||[]).map(id=>nilData(id)?.name).filter(Boolean),blocked=(r.blockedNilIds||[]).map(id=>nilData(id)?.name).filter(Boolean);
-    let text='Board refresh processed. ';
-    if(removed.length)text+=`Removed ${removed.join(', ')}. New ${added.join(', ')}.`;
-    else if(blocked.length)text+=`No NIL was removed because ${blocked.join(', ')} was protected.`;
-    else text+='No NIL received two eligible team votes, so the board did not change.';
-    out.push({id:'refresh:'+r.id,at:r.processedAt,kind:'refresh',title:'↻ Board refresh',text});
+    const fallback=noticeFromServer({id:'refresh:'+r.id,at:r.processedAt,kind:'refresh',removedNilIds:r.removedNilIds||[],addedNilIds:r.addedNilIds||[],blockedNilIds:r.blockedNilIds||[]});
+    if(fallback&&!byId[fallback.id])byId[fallback.id]=fallback;
   }
   (STATE.zombieEvents||[]).filter(z=>z.firedAt).forEach(z=>{
-    const n=noticeFromServer({id:'zombie:'+z.id+':'+z.firedAt,at:z.firedAt,kind:'zombie',restorations:z.restorations||[],outcomes:z.outcomes||[]});
-    if(n)out.push(n);
+    const fallback=noticeFromServer({id:'zombie:'+z.id+':'+z.firedAt,at:z.firedAt,kind:'zombie',restorations:z.restorations||[],outcomes:z.outcomes||[]});
+    if(fallback&&!byId[fallback.id])byId[fallback.id]=fallback;
   });
-  return out.sort((a,b)=>new Date(b.at)-new Date(a.at));
+  return Object.values(byId).sort((a,b)=>new Date(b.at)-new Date(a.at));
 }
 function renderEventBanner(){
   const el=document.getElementById('eventBanner'),seen=seenNoticeIds();
-  const notices=noticeCandidates().filter(n=>!seen.includes(n.id)).slice(0,3);
-  if(!notices.length){el.className='event-banner-stack hidden';el.innerHTML='';return;}
+  const unseen=noticeCandidates().filter(n=>!seen.includes(n.id));
+  if(!unseen.length){el.className='event-banner-stack hidden';el.innerHTML='';return;}
+
+  // Zombie activations are always separate, dismissible notices. Refreshes collapse
+  // to one outstanding banner so a player who has been away does not return to an
+  // hour-by-hour wall of stale refresh messages.
+  const refreshes=unseen.filter(n=>n.kind==='refresh').sort((a,b)=>new Date(b.at)-new Date(a.at));
+  const display=unseen.filter(n=>n.kind!=='refresh').map(n=>({...n,dismissIds:[n.id]}));
+  if(refreshes.length){
+    const latest=refreshes[0];
+    let text=latest.text;
+    if(refreshes.length>1){
+      const latestDetail=latest.text.replace(/^Board refresh processed\.\s*/,'');
+      text=`${refreshes.length} board refreshes have occurred since you last cleared this notice. Latest refresh: ${latestDetail}`;
+    }
+    display.push({...latest,text,dismissIds:refreshes.map(n=>n.id)});
+  }
+  display.sort((a,b)=>new Date(b.at)-new Date(a.at));
+
   el.className='event-banner-stack';
-  el.innerHTML=notices.map(n=>`<div class="event-banner ${esc(n.kind)}" data-notice="${esc(n.id)}"><div><strong>${esc(n.title)}</strong><div>${esc(n.text)}</div></div><button type="button" class="notice-close" data-dismiss="${esc(n.id)}" aria-label="Dismiss">×</button></div>`).join('');
-  el.querySelectorAll('[data-dismiss]').forEach(b=>b.onclick=()=>{markNoticeSeen(b.dataset.dismiss);renderEventBanner();});
+  el.innerHTML=display.map(n=>`<div class="event-banner ${esc(n.kind)}" data-notice="${esc(n.id)}"><div><strong>${esc(n.title)}</strong><div>${esc(n.text)}</div></div><button type="button" class="notice-close" data-dismiss="${esc(n.dismissIds.join(','))}" aria-label="Dismiss">×</button></div>`).join('');
+  el.querySelectorAll('[data-dismiss]').forEach(b=>b.onclick=()=>{markNoticesSeen(b.dataset.dismiss.split(',').filter(Boolean));renderEventBanner();});
 }
 function showActionMessage(text){const el=document.getElementById('actionMessage');el.textContent='✓ '+text;el.className='action-message';clearTimeout(actionTimer);actionTimer=setTimeout(()=>{el.className='action-message hidden';},4500);}
 async function act(params,opts={}){try{busy=true;setConn('warn','Saving…');await postAction(params);await new Promise(r=>setTimeout(r,800));await refresh();if(opts.verify&&!opts.verify())throw new Error(opts.verifyError||'The change could not be confirmed.');if(opts.success)showActionMessage(opts.success);}catch(e){setConn('error',e.message);alert(e.message);}finally{busy=false;}}

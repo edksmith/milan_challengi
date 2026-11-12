@@ -1,5 +1,6 @@
 let GM_KEY='',STATE=null,MAPOBJ=null,busy=false;
-async function init(){await loadFixed();const p=new URLSearchParams(location.search);GM_KEY=p.get('key')||localStorage.getItem('mq_gm_key')||'';if(p.get('key'))localStorage.setItem('mq_gm_key',p.get('key'));if(!backendUrl()){const w=document.getElementById('configWarning');w.classList.remove('hidden');w.textContent='Backend URL not configured. Paste the Apps Script /exec URL into backend-config.js.';return;}if(!GM_KEY){GM_KEY=prompt('Enter Game Master access key:')||'';if(GM_KEY)localStorage.setItem('mq_gm_key',GM_KEY);}if(!GM_KEY)return;await refresh();setInterval(()=>{if(!busy)refresh(true);},12000);}
+const GM_DRAFT={testClock:null};
+async function init(){await loadFixed();const p=new URLSearchParams(location.search);GM_KEY=p.get('key')||localStorage.getItem('mq_gm_key')||'';if(p.get('key'))localStorage.setItem('mq_gm_key',p.get('key'));if(!backendUrl()){const w=document.getElementById('configWarning');w.classList.remove('hidden');w.textContent='Backend URL not configured. Paste the Apps Script /exec URL into backend-config.js.';return;}if(!GM_KEY){GM_KEY=prompt('Enter Game Master access key:')||'';if(GM_KEY)localStorage.setItem('mq_gm_key',GM_KEY);}if(!GM_KEY)return;await refresh();setInterval(()=>{if(!busy&&!document.querySelector('#gmActions input:focus,#gmActions select:focus'))refresh(true);},12000);}
 function setConn(c,t){const e=document.getElementById('conn');e.className='pill '+c;e.textContent=t;}
 async function refresh(silent=false){try{if(!silent)setConn('warn','Updating…');const x=await jsonp('gmState',{key:GM_KEY});STATE=x;render();setConn('ok','Live');}catch(e){setConn('error',e.message);}}
 function render(){document.getElementById('phase').textContent=phaseLabel(STATE.phase);document.getElementById('serverTime').textContent=(STATE.fullState&&STATE.fullState.testNow?'TEST ':'Server ')+fmtTime(STATE.serverTime);document.getElementById('revision').textContent='Revision '+STATE.revision;renderScores(STATE,document.getElementById('scores'));renderBonus(STATE,document.getElementById('bonus'));renderLog(STATE,document.getElementById('log'));renderBoard();renderActions();if(!MAPOBJ)MAPOBJ=createMap('map',STATE);else updateMap(MAPOBJ,STATE);}
@@ -38,8 +39,9 @@ function localInputFromIso(iso){if(!iso)return '';const d=new Date(iso);const pa
 function openProtectedBySafe(fs,nilId){return openingProtectedBy(fs,nilId);}
 function renderActions(){
   const fs=STATE.fullState;
-  let h=`<h3>Immediate controls</h3><div class="actions"><button id="runRefresh" class="btn">Run refresh now</button><button id="zombie" class="btn">Trigger next Zombie</button><button id="undo" class="btn danger">Undo last saved action</button></div>${refreshDiagnostics(fs)}${zombieDiagnostics(fs)}`;
-  h+=`<h3>Test clock</h3><div class="sub">For pre-game testing only. Setting a future game time can automatically process any refreshes, Zombie events, Lunch expiry, or Sunday reset that are due before that time. It does not reverse events if you move the clock backwards.</div><div class="controls-row"><input id="testClock" type="datetime-local" value="${esc(localInputFromIso(fs.testNow))}"><button id="setClock" class="btn secondary">Set test clock</button><button id="clearClock" class="btn secondary">Use real time</button></div>${fs.testNow?`<div class="saved-state saved">TEST CLOCK ACTIVE: ${esc(new Date(fs.testNow).toLocaleString())}</div>`:''}`;
+  const testClockValue=GM_DRAFT.testClock!==null?GM_DRAFT.testClock:localInputFromIso(fs.testNow);
+  let h=`<h3>Immediate controls</h3><div class="actions"><button id="runRefresh" class="btn">Run refresh now</button><button id="zombie" class="btn">Activate next Zombie</button><button id="undo" class="btn danger">Undo last saved action</button></div>${refreshDiagnostics(fs)}${zombieDiagnostics(fs)}`;
+  h+=`<h3>Test clock</h3><div class="sub">For pre-game testing only. Your unsaved date/time is now preserved while this page auto-refreshes. When you set a future game time, all refreshes, Zombie events, Lunch expiry, or Sunday reset due by that time are processed immediately. Moving the clock backwards does not undo events already processed.</div><div class="controls-row"><input id="testClock" type="datetime-local" value="${esc(testClockValue)}"><button id="setClock" class="btn secondary">Set test clock</button><button id="clearClock" class="btn secondary">Use real time</button></div><div class="actions"><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.saturday_date}T09:59">Sat 09:59</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.saturday_date}T10:00">Sat 10:00</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.saturday_date}T14:15">Sat 14:15</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.saturday_date}T15:00">Sat 15:00</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.sunday_date}T08:29">Sun 08:29</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.sunday_date}T08:30">Sun 08:30</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.sunday_date}T09:00">Sun 09:00</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.sunday_date}T12:00">Sun 12:00</button></div>${fs.testNow?`<div class="saved-state saved">TEST CLOCK ACTIVE: ${esc(new Date(fs.testNow).toLocaleString())}</div>`:''}`;
   h+=`<h3>Phase override</h3><div class="controls-row"><select id="phaseSel"><option value="">Automatic schedule</option>${['pre_game','saturday_live','saturday_rest','sunday_planning','sunday_live','ended'].map(p=>`<option value="${p}" ${fs.phaseOverride===p?'selected':''}>${phaseLabel(p)}</option>`).join('')}</select><button id="savePhase" class="btn secondary">Save</button></div>`;
   h+=`<h3>Transfer claimed NIL</h3><div class="controls-row"><select id="transferNil"><option value="">Choose claimed NIL</option>${Object.values(STATE.claims).sort((a,b)=>nilData(a.nilId).name.localeCompare(nilData(b.nilId).name)).map(c=>`<option value="${c.nilId}">${esc(nilData(c.nilId).name)} (${teamName(c.teamId)})</option>`).join('')}</select><select id="toTeam">${GAME.teams.map(t=>`<option value="${t.id}">${t.name}</option>`).join('')}</select><button id="transfer" class="btn secondary">Transfer</button></div>`;
   h+=`<h3>Opening status</h3><div class="table-scroll"><table class="gm-table"><tr><th>Team</th><th>Direction</th><th>Opened?</th></tr>${GAME.teams.map(t=>`<tr><td>${t.name}</td><td>${esc(fs.teams[t.id].openingDirection)}</td><td>${fs.teams[t.id].openingComplete?'Yes':'No'}</td></tr>`).join('')}</table></div>`;
@@ -49,10 +51,37 @@ function renderActions(){
   document.getElementById('zombie').onclick=()=>gmAct({action:'gmTriggerZombie',key:GM_KEY},true);
   document.getElementById('undo').onclick=()=>gmAct({action:'gmUndo',key:GM_KEY},true);
   document.getElementById('savePhase').onclick=()=>gmAct({action:'gmSetPhaseOverride',key:GM_KEY,phase:document.getElementById('phaseSel').value},false);
-  document.getElementById('setClock').onclick=()=>{const v=document.getElementById('testClock').value;if(!v)return alert('Choose a test date/time.');const iso=new Date(v).toISOString();gmAct({action:'gmSetTestClock',key:GM_KEY,testNow:iso},true);};
-  document.getElementById('clearClock').onclick=()=>gmAct({action:'gmSetTestClock',key:GM_KEY,testNow:''},true);
+  const clockInput=document.getElementById('testClock');
+  clockInput.oninput=()=>{GM_DRAFT.testClock=clockInput.value;};
+  document.querySelectorAll('.clockPreset').forEach(b=>b.onclick=()=>{GM_DRAFT.testClock=b.dataset.clock;clockInput.value=b.dataset.clock;});
+  document.getElementById('setClock').onclick=()=>{const v=clockInput.value;if(!v)return alert('Choose a test date/time.');GM_DRAFT.testClock=v;const d=new Date(v);if(isNaN(d.getTime()))return alert('Invalid test date/time.');gmAct({action:'gmSetTestClock',key:GM_KEY,testNow:d.toISOString()},true);};
+  document.getElementById('clearClock').onclick=()=>{GM_DRAFT.testClock=null;gmAct({action:'gmSetTestClock',key:GM_KEY,testNow:''},true);};
   document.getElementById('transfer').onclick=()=>{const n=document.getElementById('transferNil').value;if(!n)return alert('Choose a claimed NIL.');gmAct({action:'gmTransferNil',key:GM_KEY,nilId:n,toTeam:document.getElementById('toTeam').value},true);};
 }
 
-async function gmAct(params,confirmFirst){if(confirmFirst&&!confirm('Apply this Game Master action to live state?'))return;try{busy=true;setConn('warn','Saving…');await postAction(params);await new Promise(r=>setTimeout(r,800));await refresh();}catch(e){alert(e.message);setConn('error',e.message);}finally{busy=false;}}
+async function gmAct(params,confirmFirst){
+  if(confirmFirst&&!confirm('Apply this Game Master action to live state?'))return;
+  try{
+    busy=true;setConn('warn','Saving…');
+    const beforeRevision=STATE?Number(STATE.revision||0):0;
+    await postAction(params);
+    let latest=null;
+    // Apps Script POSTs are sent no-cors, so poll the authoritative state rather than
+    // assuming an arbitrary 800 ms delay is long enough for the write to finish.
+    let confirmed=false;
+    for(let i=0;i<12;i++){
+      await new Promise(r=>setTimeout(r,i===0?500:350));
+      latest=await jsonp('gmState',{key:GM_KEY});
+      const revisionChanged=Number(latest.revision||0)>beforeRevision;
+      if(params.action==='gmSetTestClock'){
+        const actual=latest.fullState&&latest.fullState.testNow?new Date(latest.fullState.testNow).toISOString():'';
+        const expected=params.testNow?new Date(params.testNow).toISOString():'';
+        confirmed=revisionChanged && actual===expected;
+      } else confirmed=revisionChanged;
+      if(confirmed)break;
+    }
+    if(!latest||!confirmed)throw new Error('The backend did not confirm this Game Master change. Please try again.');
+    STATE=latest;if(params.action==='gmSetTestClock')GM_DRAFT.testClock=null;render();setConn('ok','Live');
+  }catch(e){alert(e.message);setConn('error',e.message);}finally{busy=false;}
+}
 init();
