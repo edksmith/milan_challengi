@@ -60,12 +60,37 @@ function renderRefresh(){
     act({action:'setOccupancy',team:TEAM_ID,key:TEAM_KEY,nilId:value},{success:expected?`Occupancy protection saved for ${nilData(expected).name}.`:'Occupancy protection cleared.',verify:()=>Number(STATE.myTeam.occupancyNilId||0)===Number(expected||0),verifyError:'The backend did not retain the occupancy setting. Please try again.'});
   };
 }
-function renderInventory(){const my=STATE.myTeam;let h='<div class="table-scroll"><table class="inventory-table"><thead><tr><th>Challenge</th><th>Levels</th></tr></thead><tbody>';CHALLENGES.standard_challenges.forEach(c=>{h+=`<tr><td>${esc(c.title)}</td><td>`+c.levels.map(l=>{const st=my.inventory.standard[c.id][l.id];return `<span class="level-chip ${st}">${esc(l.label)}</span>`;}).join('')+'</td></tr>';});h+=`<tr><td>Walking Tour</td><td>`+challengeData('walking_tour').levels.map(l=>{const st=my.inventory.walking[l.id];return `<span class="level-chip ${st}">${esc(l.label)}</span>`;}).join('')+'</td></tr></tbody></table></div>';document.getElementById('inventory').innerHTML=h;}
+function renderInventory(){const my=STATE.myTeam;let h='<div class="table-scroll"><table class="inventory-table"><thead><tr><th>Challenge</th><th>Levels</th></tr></thead><tbody>';CHALLENGES.standard_challenges.forEach(c=>{h+=`<tr><td>${esc(c.title)}</td><td>`+c.levels.map(l=>{const st=my.inventory.standard[c.id][l.id];return `<span class="level-chip ${st}">${esc(l.label)}${st==='zombie'?' ↻':''}</span>`;}).join('')+'</td></tr>';});h+=`<tr><td>Walking Tour</td><td>`+challengeData('walking_tour').levels.map(l=>{const st=my.inventory.walking[l.id];return `<span class="level-chip ${st}">${esc(l.label)}${st==='zombie'?' ↻':''}</span>`;}).join('')+'</td></tr></tbody></table></div>';document.getElementById('inventory').innerHTML=h;}
 function renderLunch(){const my=STATE.myTeam;document.getElementById('lunch').innerHTML=`<div>Mandatory break: <strong>${my.lunchBreakComplete?'complete':'not yet recorded'}</strong></div><div>Have Lunch claim: <strong>${my.haveLunchComplete?'used':'available'}</strong></div>${!my.lunchBreakComplete?'<div class="actions"><button id="markLunch" class="btn secondary">Mark normal 30-minute lunch complete</button></div>':''}`;const b=document.getElementById('markLunch');if(b)b.onclick=()=>{if(confirm('Mark your mandatory normal lunch break complete?'))act({action:'markLunchBreak',team:TEAM_ID,key:TEAM_KEY},{success:'Lunch break marked complete.'});};}
 
 function seenNoticeIds(){try{return JSON.parse(localStorage.getItem('mq_seen_notices_'+TEAM_ID)||'[]');}catch(_e){return [];}}
-function markNoticeSeen(id){const seen=seenNoticeIds();if(!seen.includes(id))seen.push(id);localStorage.setItem('mq_seen_notices_'+TEAM_ID,JSON.stringify(seen.slice(-30)));}
+function markNoticeSeen(id){const seen=seenNoticeIds();if(!seen.includes(id))seen.push(id);localStorage.setItem('mq_seen_notices_'+TEAM_ID,JSON.stringify(seen.slice(-60)));}
+function noticeFromServer(n){
+  if(n.kind==='refresh'){
+    const removed=(n.removedNilIds||[]).map(id=>nilData(id)?.name).filter(Boolean),added=(n.addedNilIds||[]).map(id=>nilData(id)?.name).filter(Boolean),blocked=(n.blockedNilIds||[]).map(id=>nilData(id)?.name).filter(Boolean);
+    let text='Board refresh processed. ';
+    if(removed.length) text+=`Removed ${removed.join(', ')}. New ${added.join(', ')}.`;
+    else if(blocked.length) text+=`No NIL was removed because ${blocked.join(', ')} was protected.`;
+    else text+='No NIL received two eligible team votes, so the board did not change.';
+    return {id:n.id,at:n.at,kind:'refresh',title:'↻ Board refresh',text};
+  }
+  if(n.kind==='zombie'){
+    const mine=(n.outcomes||[]).find(x=>x.teamId===TEAM_ID);
+    let text='';
+    if(mine&&mine.status==='restored') text=`Your team resurrected ${challengeLevelLabel(mine.challengeId,mine.levelId)}. It is available again in My challenge inventory.`;
+    else if(mine&&mine.status==='first_place') text='Your team received no restoration because it was tied for first place when the event fired.';
+    else if(mine&&mine.status==='no_eligible_used_standard_level') text='Your team was eligible to catch up, but had no used standard challenge level to resurrect. Walking Tour and Have Lunch do not count.';
+    else text='Night of the Living Challenges fired.';
+    const others=(n.restorations||[]).filter(x=>x.teamId!==TEAM_ID).map(x=>`${teamName(x.teamId)} resurrected ${challengeLevelLabel(x.challengeId,x.levelId)}`);
+    if(others.length) text+=' '+others.join(' · ')+'.';
+    return {id:n.id,at:n.at,kind:'zombie',title:'🧟 Night of the Living Challenges!',text};
+  }
+  return null;
+}
 function noticeCandidates(){
+  const server=(STATE.notices||[]).map(noticeFromServer).filter(Boolean);
+  if(server.length) return server.sort((a,b)=>new Date(b.at)-new Date(a.at));
+  // Backward-compatible fallback for state created before v0.3 notices existed.
   const out=[];
   const r=STATE.lastRefreshResult;
   if(r&&r.processedAt){
@@ -77,19 +102,18 @@ function noticeCandidates(){
     out.push({id:'refresh:'+r.id,at:r.processedAt,kind:'refresh',title:'↻ Board refresh',text});
   }
   (STATE.zombieEvents||[]).filter(z=>z.firedAt).forEach(z=>{
-    const restores=(z.restorations||[]).map(x=>`${teamName(x.teamId)}: ${challengeLevelLabel(x.challengeId,x.levelId)}`);
-    let text=restores.length?`Restored ${restores.join(' · ')}.`:'No challenge levels were restored this time.';
-    const mine=(z.restorations||[]).find(x=>x.teamId===TEAM_ID);if(mine)text=`Your team resurrected ${challengeLevelLabel(mine.challengeId,mine.levelId)}! `+text;
-    out.push({id:'zombie:'+z.id+':'+z.firedAt,at:z.firedAt,kind:'zombie',title:'🧟 Night of the Living Challenges!',text});
+    const n=noticeFromServer({id:'zombie:'+z.id+':'+z.firedAt,at:z.firedAt,kind:'zombie',restorations:z.restorations||[],outcomes:z.outcomes||[]});
+    if(n)out.push(n);
   });
   return out.sort((a,b)=>new Date(b.at)-new Date(a.at));
 }
 function renderEventBanner(){
-  const el=document.getElementById('eventBanner'),seen=seenNoticeIds(),notice=noticeCandidates().find(n=>!seen.includes(n.id));
-  if(!notice){el.className='event-banner hidden';el.innerHTML='';return;}
-  el.className='event-banner '+notice.kind;
-  el.innerHTML=`<div><strong>${esc(notice.title)}</strong><div>${esc(notice.text)}</div></div><button type="button" class="notice-close" aria-label="Dismiss">×</button>`;
-  el.querySelector('button').onclick=()=>{markNoticeSeen(notice.id);renderEventBanner();};
+  const el=document.getElementById('eventBanner'),seen=seenNoticeIds();
+  const notices=noticeCandidates().filter(n=>!seen.includes(n.id)).slice(0,3);
+  if(!notices.length){el.className='event-banner-stack hidden';el.innerHTML='';return;}
+  el.className='event-banner-stack';
+  el.innerHTML=notices.map(n=>`<div class="event-banner ${esc(n.kind)}" data-notice="${esc(n.id)}"><div><strong>${esc(n.title)}</strong><div>${esc(n.text)}</div></div><button type="button" class="notice-close" data-dismiss="${esc(n.id)}" aria-label="Dismiss">×</button></div>`).join('');
+  el.querySelectorAll('[data-dismiss]').forEach(b=>b.onclick=()=>{markNoticeSeen(b.dataset.dismiss);renderEventBanner();});
 }
 function showActionMessage(text){const el=document.getElementById('actionMessage');el.textContent='✓ '+text;el.className='action-message';clearTimeout(actionTimer);actionTimer=setTimeout(()=>{el.className='action-message hidden';},4500);}
 async function act(params,opts={}){try{busy=true;setConn('warn','Saving…');await postAction(params);await new Promise(r=>setTimeout(r,800));await refresh();if(opts.verify&&!opts.verify())throw new Error(opts.verifyError||'The change could not be confirmed.');if(opts.success)showActionMessage(opts.success);}catch(e){setConn('error',e.message);alert(e.message);}finally{busy=false;}}
