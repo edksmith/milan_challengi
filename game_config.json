@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "game_id": "milano_quartieri_2026",
+  "title": "Milano Quartieri Challengi",
+  "timezone": "Europe/Rome",
+  "teams": [
+    {
+      "id": "blue",
+      "name": "Team Blue",
+      "color": "#2563EB"
+    },
+    {
+      "id": "green",
+      "name": "Team Green",
+      "color": "#16A34A"
+    },
+    {
+      "id": "red",
+      "name": "Team Red",
+      "color": "#DC2626"
+    }
+  ],
+  "map": {
+    "unclaimed_fill": "#D1D5DB",
+    "active_outline": "#F59E0B",
+    "active_outline_width": 4,
+    "occupancy_marker": "occupied",
+    "opening_protection_marker": "opening-protected"
+  },
+  "schedule": {
+    "saturday_date": "2026-11-14",
+    "saturday_start": "09:00",
+    "saturday_end": "19:00",
+    "sunday_date": "2026-11-15",
+    "sunday_board_reveal": "08:30",
+    "sunday_start": "09:00",
+    "sunday_end": "12:00",
+    "saturday_refresh_times": [
+      "10:00",
+      "11:00",
+      "12:00",
+      "13:00",
+      "14:00",
+      "15:00",
+      "16:00",
+      "17:00",
+      "18:00"
+    ],
+    "sunday_refresh_times": [
+      "10:00",
+      "11:00"
+    ]
+  },
+  "opening": {
+    "initial_board_size": 6,
+    "normal_board_size": 8,
+    "directions": [
+      {
+        "id": "north",
+        "label": "North",
+        "nil_ids": [
+          2,
+          8
+        ]
+      },
+      {
+        "id": "east_southeast",
+        "label": "East / Southeast",
+        "nil_ids": [
+          4,
+          5
+        ]
+      },
+      {
+        "id": "west_southwest",
+        "label": "West / Southwest",
+        "nil_ids": [
+          7,
+          6
+        ]
+      }
+    ],
+    "direction_assignment": "random_one_per_team",
+    "opponents_cannot_claim_start_pair_until_assigned_team_has_opening_claim": true,
+    "first_distinct_team_opening_claim_expands_to": 7,
+    "second_distinct_team_opening_claim_expands_to": 8,
+    "new_opening_draws_exclude_initial_six": true
+  },
+  "board": {
+    "normal_size": 8,
+    "standard_challenge_weight": 1,
+    "challenge_generated_on_each_nil_appearance": true,
+    "claimed_nil_never_returns": true,
+    "active_nil_cannot_duplicate": true
+  },
+  "lunch": {
+    "saturday_only": true,
+    "draw_eligible_from": "10:00",
+    "may_start_from": "11:00",
+    "must_complete_by": "15:00",
+    "last_new_draw_time": "14:15",
+    "duration_minutes": 45,
+    "normal_break_minutes": 30,
+    "draw_weight": 2,
+    "max_active_cards": 2,
+    "successful_lunch_replacement_cannot_be_lunch": true,
+    "opening_eligible": false,
+    "sunday_eligible": false
+  },
+  "refresh": {
+    "votes_per_team": 2,
+    "votes_must_target_distinct_nils": true,
+    "votes_needed_from_distinct_teams": 2,
+    "votes_hidden_until_processing": true,
+    "occupied_nil_protected": true,
+    "occupancy_clears_after_refresh": true,
+    "opening_protected_nil_protected": true,
+    "removed_nil_excluded_from_same_refresh_replacement_draws": true
+  },
+  "zombie_events": {
+    "count": 3,
+    "time_granularity_minutes": 5,
+    "events": [
+      {
+        "day": "saturday",
+        "window_start": "12:00",
+        "window_end": "15:00",
+        "label": "Saturday Zombie 1"
+      },
+      {
+        "day": "saturday",
+        "window_start": "14:00",
+        "window_end": "18:00",
+        "label": "Saturday Zombie 2",
+        "minimum_minutes_after_previous": 120
+      },
+      {
+        "day": "sunday",
+        "window_start": "09:15",
+        "window_end": "11:00",
+        "label": "Sunday Zombie"
+      }
+    ],
+    "eligibility_metric": "raw_nil_claims",
+    "teams_tied_for_first_receive_restoration": false,
+    "restoration_selection": "random_from_currently_used_standard_levels",
+    "walking_tour_eligible": false,
+    "have_lunch_eligible": false
+  },
+  "scoring": {
+    "isolated_nil_points": 1.0,
+    "connected_nil_points": 1.5,
+    "corner_contact_counts_as_adjacent": false,
+    "bonuses": {
+      "most_game_municipi": {
+        "points": 5,
+        "tie_awards_zero": true
+      },
+      "largest_total_area": {
+        "points": 3,
+        "tie_awards_zero": true
+      },
+      "highest_average_population_density": {
+        "points": 3,
+        "tie_awards_zero": true
+      },
+      "most_extreme_completions": {
+        "points": 3,
+        "tie_awards_zero": true
+      }
+    },
+    "tie_breakers": [
+      "raw_nil_claims",
+      "extreme_completions",
+      "random_draw"
+    ]
+  },
+  "data_files": {
+    "nils": "nil_data.json",
+    "geojson": "nil_data.geojson",
+    "adjacency": "adjacency.json",
+    "challenges": "challenge_config.json"
+  }
+}

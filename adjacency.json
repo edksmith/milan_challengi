@@ -1,0 +1,1644 @@
+{
+  "metadata": {
+    "nil_count": 88,
+    "edge_count": 208,
+    "rule": "NILs are adjacent only if they share a true border; corner-only contact does not count.",
+    "method": "Robust shared-boundary test after projection to EPSG:32632."
+  },
+  "adjacency": {
+    "1": [
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "2": [
+      1,
+      3,
+      4,
+      8,
+      9,
+      10,
+      69
+    ],
+    "3": [
+      2,
+      4,
+      10,
+      21
+    ],
+    "4": [
+      1,
+      2,
+      3,
+      5,
+      21,
+      26,
+      27
+    ],
+    "5": [
+      1,
+      4,
+      6,
+      27,
+      37
+    ],
+    "6": [
+      1,
+      5,
+      7,
+      43,
+      44
+    ],
+    "7": [
+      1,
+      6,
+      8,
+      44,
+      50,
+      51,
+      68
+    ],
+    "8": [
+      1,
+      2,
+      7,
+      68,
+      69
+    ],
+    "9": [
+      2,
+      10,
+      11,
+      69,
+      78
+    ],
+    "10": [
+      2,
+      3,
+      9,
+      11,
+      12,
+      13,
+      19,
+      20,
+      21
+    ],
+    "11": [
+      9,
+      10,
+      12,
+      78,
+      79
+    ],
+    "12": [
+      10,
+      11,
+      13,
+      14,
+      79,
+      84
+    ],
+    "13": [
+      10,
+      12,
+      14,
+      15,
+      16,
+      19
+    ],
+    "14": [
+      12,
+      13,
+      15,
+      84
+    ],
+    "15": [
+      13,
+      14,
+      16
+    ],
+    "16": [
+      13,
+      15,
+      17,
+      19
+    ],
+    "17": [
+      16,
+      18,
+      19
+    ],
+    "18": [
+      17,
+      19,
+      20,
+      23
+    ],
+    "19": [
+      10,
+      13,
+      16,
+      17,
+      18,
+      20
+    ],
+    "20": [
+      10,
+      18,
+      19,
+      21,
+      22
+    ],
+    "21": [
+      3,
+      4,
+      10,
+      20,
+      22,
+      26
+    ],
+    "22": [
+      20,
+      21,
+      23,
+      25
+    ],
+    "23": [
+      18,
+      22,
+      24,
+      25
+    ],
+    "24": [
+      23,
+      25,
+      30,
+      31
+    ],
+    "25": [
+      22,
+      23,
+      24,
+      26,
+      28,
+      29,
+      30
+    ],
+    "26": [
+      4,
+      21,
+      25,
+      27,
+      28
+    ],
+    "27": [
+      4,
+      5,
+      26,
+      28,
+      36
+    ],
+    "28": [
+      25,
+      26,
+      27,
+      29,
+      35,
+      36
+    ],
+    "29": [
+      25,
+      28,
+      30,
+      35
+    ],
+    "30": [
+      24,
+      25,
+      29,
+      31,
+      33,
+      35
+    ],
+    "31": [
+      24,
+      30,
+      32
+    ],
+    "32": [
+      31,
+      33,
+      34,
+      35
+    ],
+    "33": [
+      30,
+      32,
+      35
+    ],
+    "34": [
+      32,
+      85
+    ],
+    "35": [
+      28,
+      29,
+      30,
+      32,
+      33,
+      36,
+      85
+    ],
+    "36": [
+      27,
+      28,
+      35,
+      37,
+      38,
+      85
+    ],
+    "37": [
+      5,
+      36,
+      38,
+      42,
+      43
+    ],
+    "38": [
+      36,
+      37,
+      42,
+      85
+    ],
+    "39": [
+      85
+    ],
+    "40": [
+      85
+    ],
+    "41": [
+      42,
+      85,
+      86
+    ],
+    "42": [
+      37,
+      38,
+      41,
+      43,
+      46,
+      47,
+      85,
+      86
+    ],
+    "43": [
+      6,
+      37,
+      42,
+      44,
+      45
+    ],
+    "44": [
+      6,
+      7,
+      43,
+      45,
+      49,
+      50
+    ],
+    "45": [
+      43,
+      44,
+      46,
+      48,
+      49
+    ],
+    "46": [
+      42,
+      45,
+      47,
+      48,
+      86
+    ],
+    "47": [
+      42,
+      46,
+      86
+    ],
+    "48": [
+      45,
+      46,
+      49,
+      86
+    ],
+    "49": [
+      44,
+      45,
+      48,
+      50,
+      52,
+      53
+    ],
+    "50": [
+      7,
+      44,
+      49,
+      51
+    ],
+    "51": [
+      7,
+      50,
+      52,
+      58,
+      68
+    ],
+    "52": [
+      49,
+      51,
+      53,
+      56,
+      57,
+      60
+    ],
+    "53": [
+      49,
+      52,
+      55,
+      56
+    ],
+    "54": [
+      55,
+      87
+    ],
+    "55": [
+      53,
+      54,
+      56,
+      87,
+      88
+    ],
+    "56": [
+      52,
+      53,
+      55,
+      60,
+      61,
+      88
+    ],
+    "57": [
+      52,
+      58,
+      60
+    ],
+    "58": [
+      51,
+      57,
+      59,
+      66,
+      67,
+      68
+    ],
+    "59": [
+      58,
+      67,
+      68
+    ],
+    "60": [
+      52,
+      56,
+      57,
+      61,
+      65,
+      66,
+      88
+    ],
+    "61": [
+      56,
+      60,
+      62,
+      88
+    ],
+    "62": [
+      61,
+      63,
+      88
+    ],
+    "63": [
+      62,
+      88
+    ],
+    "64": [
+      65,
+      88
+    ],
+    "65": [
+      60,
+      64,
+      66,
+      72,
+      88
+    ],
+    "66": [
+      58,
+      60,
+      65,
+      71
+    ],
+    "67": [
+      58,
+      59,
+      68,
+      69,
+      70,
+      71
+    ],
+    "68": [
+      7,
+      8,
+      51,
+      58,
+      59,
+      67,
+      69
+    ],
+    "69": [
+      2,
+      8,
+      9,
+      67,
+      68,
+      70,
+      78
+    ],
+    "70": [
+      67,
+      69,
+      71,
+      78
+    ],
+    "71": [
+      66,
+      67,
+      70,
+      72,
+      76,
+      77
+    ],
+    "72": [
+      65,
+      71,
+      73,
+      75
+    ],
+    "73": [
+      72,
+      74,
+      75
+    ],
+    "74": [
+      73,
+      76
+    ],
+    "75": [
+      72,
+      73,
+      76
+    ],
+    "76": [
+      71,
+      74,
+      75,
+      77,
+      81
+    ],
+    "77": [
+      71,
+      76,
+      78,
+      79,
+      80,
+      81
+    ],
+    "78": [
+      9,
+      11,
+      69,
+      70,
+      77,
+      79
+    ],
+    "79": [
+      11,
+      12,
+      77,
+      78,
+      80
+    ],
+    "80": [
+      77,
+      79,
+      81,
+      82,
+      83,
+      84
+    ],
+    "81": [
+      76,
+      77,
+      80,
+      82
+    ],
+    "82": [
+      80,
+      81,
+      83
+    ],
+    "83": [
+      80,
+      82,
+      84
+    ],
+    "84": [
+      12,
+      14,
+      80,
+      83
+    ],
+    "85": [
+      34,
+      35,
+      36,
+      38,
+      39,
+      40,
+      41,
+      42
+    ],
+    "86": [
+      41,
+      42,
+      46,
+      47,
+      48
+    ],
+    "87": [
+      54,
+      55
+    ],
+    "88": [
+      55,
+      56,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65
+    ]
+  },
+  "edges": [
+    {
+      "nil_a": 1,
+      "nil_b": 2,
+      "shared_boundary_m_approx": 2173.5
+    },
+    {
+      "nil_a": 1,
+      "nil_b": 4,
+      "shared_boundary_m_approx": 1937.3
+    },
+    {
+      "nil_a": 1,
+      "nil_b": 5,
+      "shared_boundary_m_approx": 508.3
+    },
+    {
+      "nil_a": 1,
+      "nil_b": 6,
+      "shared_boundary_m_approx": 816.7
+    },
+    {
+      "nil_a": 1,
+      "nil_b": 7,
+      "shared_boundary_m_approx": 1692.7
+    },
+    {
+      "nil_a": 1,
+      "nil_b": 8,
+      "shared_boundary_m_approx": 448.9
+    },
+    {
+      "nil_a": 2,
+      "nil_b": 3,
+      "shared_boundary_m_approx": 587.9
+    },
+    {
+      "nil_a": 2,
+      "nil_b": 4,
+      "shared_boundary_m_approx": 75.6
+    },
+    {
+      "nil_a": 2,
+      "nil_b": 8,
+      "shared_boundary_m_approx": 644.5
+    },
+    {
+      "nil_a": 2,
+      "nil_b": 9,
+      "shared_boundary_m_approx": 1096.3
+    },
+    {
+      "nil_a": 2,
+      "nil_b": 10,
+      "shared_boundary_m_approx": 375.2
+    },
+    {
+      "nil_a": 2,
+      "nil_b": 69,
+      "shared_boundary_m_approx": 515.8
+    },
+    {
+      "nil_a": 3,
+      "nil_b": 4,
+      "shared_boundary_m_approx": 953.8
+    },
+    {
+      "nil_a": 3,
+      "nil_b": 10,
+      "shared_boundary_m_approx": 231.5
+    },
+    {
+      "nil_a": 3,
+      "nil_b": 21,
+      "shared_boundary_m_approx": 402.0
+    },
+    {
+      "nil_a": 4,
+      "nil_b": 5,
+      "shared_boundary_m_approx": 879.7
+    },
+    {
+      "nil_a": 4,
+      "nil_b": 21,
+      "shared_boundary_m_approx": 793.0
+    },
+    {
+      "nil_a": 4,
+      "nil_b": 26,
+      "shared_boundary_m_approx": 1322.5
+    },
+    {
+      "nil_a": 4,
+      "nil_b": 27,
+      "shared_boundary_m_approx": 604.8
+    },
+    {
+      "nil_a": 5,
+      "nil_b": 6,
+      "shared_boundary_m_approx": 1289.1
+    },
+    {
+      "nil_a": 5,
+      "nil_b": 27,
+      "shared_boundary_m_approx": 1201.7
+    },
+    {
+      "nil_a": 5,
+      "nil_b": 37,
+      "shared_boundary_m_approx": 836.6
+    },
+    {
+      "nil_a": 6,
+      "nil_b": 7,
+      "shared_boundary_m_approx": 474.3
+    },
+    {
+      "nil_a": 6,
+      "nil_b": 43,
+      "shared_boundary_m_approx": 970.3
+    },
+    {
+      "nil_a": 6,
+      "nil_b": 44,
+      "shared_boundary_m_approx": 1747.7
+    },
+    {
+      "nil_a": 7,
+      "nil_b": 8,
+      "shared_boundary_m_approx": 654.3
+    },
+    {
+      "nil_a": 7,
+      "nil_b": 44,
+      "shared_boundary_m_approx": 513.0
+    },
+    {
+      "nil_a": 7,
+      "nil_b": 50,
+      "shared_boundary_m_approx": 317.6
+    },
+    {
+      "nil_a": 7,
+      "nil_b": 51,
+      "shared_boundary_m_approx": 831.7
+    },
+    {
+      "nil_a": 7,
+      "nil_b": 68,
+      "shared_boundary_m_approx": 1016.3
+    },
+    {
+      "nil_a": 8,
+      "nil_b": 68,
+      "shared_boundary_m_approx": 315.3
+    },
+    {
+      "nil_a": 8,
+      "nil_b": 69,
+      "shared_boundary_m_approx": 908.9
+    },
+    {
+      "nil_a": 9,
+      "nil_b": 10,
+      "shared_boundary_m_approx": 1041.1
+    },
+    {
+      "nil_a": 9,
+      "nil_b": 11,
+      "shared_boundary_m_approx": 1646.7
+    },
+    {
+      "nil_a": 9,
+      "nil_b": 69,
+      "shared_boundary_m_approx": 541.9
+    },
+    {
+      "nil_a": 9,
+      "nil_b": 78,
+      "shared_boundary_m_approx": 131.2
+    },
+    {
+      "nil_a": 10,
+      "nil_b": 11,
+      "shared_boundary_m_approx": 379.9
+    },
+    {
+      "nil_a": 10,
+      "nil_b": 12,
+      "shared_boundary_m_approx": 805.1
+    },
+    {
+      "nil_a": 10,
+      "nil_b": 13,
+      "shared_boundary_m_approx": 1323.7
+    },
+    {
+      "nil_a": 10,
+      "nil_b": 19,
+      "shared_boundary_m_approx": 115.8
+    },
+    {
+      "nil_a": 10,
+      "nil_b": 20,
+      "shared_boundary_m_approx": 1688.2
+    },
+    {
+      "nil_a": 10,
+      "nil_b": 21,
+      "shared_boundary_m_approx": 1551.9
+    },
+    {
+      "nil_a": 11,
+      "nil_b": 12,
+      "shared_boundary_m_approx": 1747.6
+    },
+    {
+      "nil_a": 11,
+      "nil_b": 78,
+      "shared_boundary_m_approx": 1104.2
+    },
+    {
+      "nil_a": 11,
+      "nil_b": 79,
+      "shared_boundary_m_approx": 209.4
+    },
+    {
+      "nil_a": 12,
+      "nil_b": 13,
+      "shared_boundary_m_approx": 1690.7
+    },
+    {
+      "nil_a": 12,
+      "nil_b": 14,
+      "shared_boundary_m_approx": 1124.1
+    },
+    {
+      "nil_a": 12,
+      "nil_b": 79,
+      "shared_boundary_m_approx": 1028.2
+    },
+    {
+      "nil_a": 12,
+      "nil_b": 84,
+      "shared_boundary_m_approx": 89.6
+    },
+    {
+      "nil_a": 13,
+      "nil_b": 14,
+      "shared_boundary_m_approx": 942.0
+    },
+    {
+      "nil_a": 13,
+      "nil_b": 15,
+      "shared_boundary_m_approx": 951.1
+    },
+    {
+      "nil_a": 13,
+      "nil_b": 16,
+      "shared_boundary_m_approx": 2326.8
+    },
+    {
+      "nil_a": 13,
+      "nil_b": 19,
+      "shared_boundary_m_approx": 240.4
+    },
+    {
+      "nil_a": 14,
+      "nil_b": 15,
+      "shared_boundary_m_approx": 2187.3
+    },
+    {
+      "nil_a": 14,
+      "nil_b": 84,
+      "shared_boundary_m_approx": 4526.9
+    },
+    {
+      "nil_a": 15,
+      "nil_b": 16,
+      "shared_boundary_m_approx": 1771.3
+    },
+    {
+      "nil_a": 16,
+      "nil_b": 17,
+      "shared_boundary_m_approx": 1948.6
+    },
+    {
+      "nil_a": 16,
+      "nil_b": 19,
+      "shared_boundary_m_approx": 1760.5
+    },
+    {
+      "nil_a": 17,
+      "nil_b": 18,
+      "shared_boundary_m_approx": 901.8
+    },
+    {
+      "nil_a": 17,
+      "nil_b": 19,
+      "shared_boundary_m_approx": 1623.7
+    },
+    {
+      "nil_a": 18,
+      "nil_b": 19,
+      "shared_boundary_m_approx": 2917.5
+    },
+    {
+      "nil_a": 18,
+      "nil_b": 20,
+      "shared_boundary_m_approx": 844.1
+    },
+    {
+      "nil_a": 18,
+      "nil_b": 23,
+      "shared_boundary_m_approx": 1747.7
+    },
+    {
+      "nil_a": 19,
+      "nil_b": 20,
+      "shared_boundary_m_approx": 1149.6
+    },
+    {
+      "nil_a": 20,
+      "nil_b": 21,
+      "shared_boundary_m_approx": 957.3
+    },
+    {
+      "nil_a": 20,
+      "nil_b": 22,
+      "shared_boundary_m_approx": 997.3
+    },
+    {
+      "nil_a": 21,
+      "nil_b": 22,
+      "shared_boundary_m_approx": 1998.6
+    },
+    {
+      "nil_a": 21,
+      "nil_b": 26,
+      "shared_boundary_m_approx": 1315.0
+    },
+    {
+      "nil_a": 22,
+      "nil_b": 23,
+      "shared_boundary_m_approx": 1863.8
+    },
+    {
+      "nil_a": 22,
+      "nil_b": 25,
+      "shared_boundary_m_approx": 1152.1
+    },
+    {
+      "nil_a": 23,
+      "nil_b": 24,
+      "shared_boundary_m_approx": 1945.2
+    },
+    {
+      "nil_a": 23,
+      "nil_b": 25,
+      "shared_boundary_m_approx": 176.3
+    },
+    {
+      "nil_a": 24,
+      "nil_b": 25,
+      "shared_boundary_m_approx": 675.8
+    },
+    {
+      "nil_a": 24,
+      "nil_b": 30,
+      "shared_boundary_m_approx": 1071.6
+    },
+    {
+      "nil_a": 24,
+      "nil_b": 31,
+      "shared_boundary_m_approx": 1624.3
+    },
+    {
+      "nil_a": 25,
+      "nil_b": 26,
+      "shared_boundary_m_approx": 820.9
+    },
+    {
+      "nil_a": 25,
+      "nil_b": 28,
+      "shared_boundary_m_approx": 110.4
+    },
+    {
+      "nil_a": 25,
+      "nil_b": 29,
+      "shared_boundary_m_approx": 1150.0
+    },
+    {
+      "nil_a": 25,
+      "nil_b": 30,
+      "shared_boundary_m_approx": 472.5
+    },
+    {
+      "nil_a": 26,
+      "nil_b": 27,
+      "shared_boundary_m_approx": 1029.2
+    },
+    {
+      "nil_a": 26,
+      "nil_b": 28,
+      "shared_boundary_m_approx": 1461.1
+    },
+    {
+      "nil_a": 27,
+      "nil_b": 28,
+      "shared_boundary_m_approx": 740.9
+    },
+    {
+      "nil_a": 27,
+      "nil_b": 36,
+      "shared_boundary_m_approx": 1130.4
+    },
+    {
+      "nil_a": 28,
+      "nil_b": 29,
+      "shared_boundary_m_approx": 1480.7
+    },
+    {
+      "nil_a": 28,
+      "nil_b": 35,
+      "shared_boundary_m_approx": 915.1
+    },
+    {
+      "nil_a": 28,
+      "nil_b": 36,
+      "shared_boundary_m_approx": 210.3
+    },
+    {
+      "nil_a": 29,
+      "nil_b": 30,
+      "shared_boundary_m_approx": 1029.3
+    },
+    {
+      "nil_a": 29,
+      "nil_b": 35,
+      "shared_boundary_m_approx": 1199.4
+    },
+    {
+      "nil_a": 30,
+      "nil_b": 31,
+      "shared_boundary_m_approx": 3118.4
+    },
+    {
+      "nil_a": 30,
+      "nil_b": 33,
+      "shared_boundary_m_approx": 2763.2
+    },
+    {
+      "nil_a": 30,
+      "nil_b": 35,
+      "shared_boundary_m_approx": 327.6
+    },
+    {
+      "nil_a": 31,
+      "nil_b": 32,
+      "shared_boundary_m_approx": 739.9
+    },
+    {
+      "nil_a": 32,
+      "nil_b": 33,
+      "shared_boundary_m_approx": 1771.1
+    },
+    {
+      "nil_a": 32,
+      "nil_b": 34,
+      "shared_boundary_m_approx": 130.9
+    },
+    {
+      "nil_a": 32,
+      "nil_b": 35,
+      "shared_boundary_m_approx": 1444.8
+    },
+    {
+      "nil_a": 33,
+      "nil_b": 35,
+      "shared_boundary_m_approx": 1481.3
+    },
+    {
+      "nil_a": 34,
+      "nil_b": 85,
+      "shared_boundary_m_approx": 2360.6
+    },
+    {
+      "nil_a": 35,
+      "nil_b": 36,
+      "shared_boundary_m_approx": 1976.8
+    },
+    {
+      "nil_a": 35,
+      "nil_b": 85,
+      "shared_boundary_m_approx": 1741.2
+    },
+    {
+      "nil_a": 36,
+      "nil_b": 37,
+      "shared_boundary_m_approx": 1037.3
+    },
+    {
+      "nil_a": 36,
+      "nil_b": 38,
+      "shared_boundary_m_approx": 1026.0
+    },
+    {
+      "nil_a": 36,
+      "nil_b": 85,
+      "shared_boundary_m_approx": 1734.1
+    },
+    {
+      "nil_a": 37,
+      "nil_b": 38,
+      "shared_boundary_m_approx": 947.5
+    },
+    {
+      "nil_a": 37,
+      "nil_b": 42,
+      "shared_boundary_m_approx": 131.0
+    },
+    {
+      "nil_a": 37,
+      "nil_b": 43,
+      "shared_boundary_m_approx": 825.5
+    },
+    {
+      "nil_a": 38,
+      "nil_b": 42,
+      "shared_boundary_m_approx": 1172.2
+    },
+    {
+      "nil_a": 38,
+      "nil_b": 85,
+      "shared_boundary_m_approx": 3337.6
+    },
+    {
+      "nil_a": 39,
+      "nil_b": 85,
+      "shared_boundary_m_approx": 5341.2
+    },
+    {
+      "nil_a": 40,
+      "nil_b": 85,
+      "shared_boundary_m_approx": 2223.1
+    },
+    {
+      "nil_a": 41,
+      "nil_b": 42,
+      "shared_boundary_m_approx": 1609.3
+    },
+    {
+      "nil_a": 41,
+      "nil_b": 85,
+      "shared_boundary_m_approx": 3401.0
+    },
+    {
+      "nil_a": 41,
+      "nil_b": 86,
+      "shared_boundary_m_approx": 1505.2
+    },
+    {
+      "nil_a": 42,
+      "nil_b": 43,
+      "shared_boundary_m_approx": 1304.9
+    },
+    {
+      "nil_a": 42,
+      "nil_b": 46,
+      "shared_boundary_m_approx": 1544.7
+    },
+    {
+      "nil_a": 42,
+      "nil_b": 47,
+      "shared_boundary_m_approx": 751.9
+    },
+    {
+      "nil_a": 42,
+      "nil_b": 85,
+      "shared_boundary_m_approx": 2196.1
+    },
+    {
+      "nil_a": 42,
+      "nil_b": 86,
+      "shared_boundary_m_approx": 130.2
+    },
+    {
+      "nil_a": 43,
+      "nil_b": 44,
+      "shared_boundary_m_approx": 251.9
+    },
+    {
+      "nil_a": 43,
+      "nil_b": 45,
+      "shared_boundary_m_approx": 616.4
+    },
+    {
+      "nil_a": 44,
+      "nil_b": 45,
+      "shared_boundary_m_approx": 1576.9
+    },
+    {
+      "nil_a": 44,
+      "nil_b": 49,
+      "shared_boundary_m_approx": 156.3
+    },
+    {
+      "nil_a": 44,
+      "nil_b": 50,
+      "shared_boundary_m_approx": 1726.8
+    },
+    {
+      "nil_a": 45,
+      "nil_b": 46,
+      "shared_boundary_m_approx": 1325.7
+    },
+    {
+      "nil_a": 45,
+      "nil_b": 48,
+      "shared_boundary_m_approx": 1263.2
+    },
+    {
+      "nil_a": 45,
+      "nil_b": 49,
+      "shared_boundary_m_approx": 767.6
+    },
+    {
+      "nil_a": 46,
+      "nil_b": 47,
+      "shared_boundary_m_approx": 1206.5
+    },
+    {
+      "nil_a": 46,
+      "nil_b": 48,
+      "shared_boundary_m_approx": 1430.6
+    },
+    {
+      "nil_a": 46,
+      "nil_b": 86,
+      "shared_boundary_m_approx": 1333.6
+    },
+    {
+      "nil_a": 47,
+      "nil_b": 86,
+      "shared_boundary_m_approx": 3206.1
+    },
+    {
+      "nil_a": 48,
+      "nil_b": 49,
+      "shared_boundary_m_approx": 2242.6
+    },
+    {
+      "nil_a": 48,
+      "nil_b": 86,
+      "shared_boundary_m_approx": 2620.7
+    },
+    {
+      "nil_a": 49,
+      "nil_b": 50,
+      "shared_boundary_m_approx": 949.0
+    },
+    {
+      "nil_a": 49,
+      "nil_b": 52,
+      "shared_boundary_m_approx": 1460.0
+    },
+    {
+      "nil_a": 49,
+      "nil_b": 53,
+      "shared_boundary_m_approx": 1744.9
+    },
+    {
+      "nil_a": 50,
+      "nil_b": 51,
+      "shared_boundary_m_approx": 1131.8
+    },
+    {
+      "nil_a": 51,
+      "nil_b": 52,
+      "shared_boundary_m_approx": 1406.5
+    },
+    {
+      "nil_a": 51,
+      "nil_b": 58,
+      "shared_boundary_m_approx": 779.7
+    },
+    {
+      "nil_a": 51,
+      "nil_b": 68,
+      "shared_boundary_m_approx": 760.2
+    },
+    {
+      "nil_a": 52,
+      "nil_b": 53,
+      "shared_boundary_m_approx": 1198.1
+    },
+    {
+      "nil_a": 52,
+      "nil_b": 56,
+      "shared_boundary_m_approx": 1121.5
+    },
+    {
+      "nil_a": 52,
+      "nil_b": 57,
+      "shared_boundary_m_approx": 1498.2
+    },
+    {
+      "nil_a": 52,
+      "nil_b": 60,
+      "shared_boundary_m_approx": 98.2
+    },
+    {
+      "nil_a": 53,
+      "nil_b": 55,
+      "shared_boundary_m_approx": 737.8
+    },
+    {
+      "nil_a": 53,
+      "nil_b": 56,
+      "shared_boundary_m_approx": 2227.9
+    },
+    {
+      "nil_a": 54,
+      "nil_b": 55,
+      "shared_boundary_m_approx": 724.2
+    },
+    {
+      "nil_a": 54,
+      "nil_b": 87,
+      "shared_boundary_m_approx": 2344.8
+    },
+    {
+      "nil_a": 55,
+      "nil_b": 56,
+      "shared_boundary_m_approx": 1483.3
+    },
+    {
+      "nil_a": 55,
+      "nil_b": 87,
+      "shared_boundary_m_approx": 757.4
+    },
+    {
+      "nil_a": 55,
+      "nil_b": 88,
+      "shared_boundary_m_approx": 3316.1
+    },
+    {
+      "nil_a": 56,
+      "nil_b": 60,
+      "shared_boundary_m_approx": 694.9
+    },
+    {
+      "nil_a": 56,
+      "nil_b": 61,
+      "shared_boundary_m_approx": 1712.6
+    },
+    {
+      "nil_a": 56,
+      "nil_b": 88,
+      "shared_boundary_m_approx": 2978.3
+    },
+    {
+      "nil_a": 57,
+      "nil_b": 58,
+      "shared_boundary_m_approx": 1379.9
+    },
+    {
+      "nil_a": 57,
+      "nil_b": 60,
+      "shared_boundary_m_approx": 1750.8
+    },
+    {
+      "nil_a": 58,
+      "nil_b": 59,
+      "shared_boundary_m_approx": 1224.7
+    },
+    {
+      "nil_a": 58,
+      "nil_b": 66,
+      "shared_boundary_m_approx": 853.5
+    },
+    {
+      "nil_a": 58,
+      "nil_b": 67,
+      "shared_boundary_m_approx": 789.2
+    },
+    {
+      "nil_a": 58,
+      "nil_b": 68,
+      "shared_boundary_m_approx": 745.0
+    },
+    {
+      "nil_a": 59,
+      "nil_b": 67,
+      "shared_boundary_m_approx": 676.3
+    },
+    {
+      "nil_a": 59,
+      "nil_b": 68,
+      "shared_boundary_m_approx": 1097.5
+    },
+    {
+      "nil_a": 60,
+      "nil_b": 61,
+      "shared_boundary_m_approx": 712.6
+    },
+    {
+      "nil_a": 60,
+      "nil_b": 65,
+      "shared_boundary_m_approx": 2199.2
+    },
+    {
+      "nil_a": 60,
+      "nil_b": 66,
+      "shared_boundary_m_approx": 1232.1
+    },
+    {
+      "nil_a": 60,
+      "nil_b": 88,
+      "shared_boundary_m_approx": 1597.2
+    },
+    {
+      "nil_a": 61,
+      "nil_b": 62,
+      "shared_boundary_m_approx": 327.6
+    },
+    {
+      "nil_a": 61,
+      "nil_b": 88,
+      "shared_boundary_m_approx": 1900.5
+    },
+    {
+      "nil_a": 62,
+      "nil_b": 63,
+      "shared_boundary_m_approx": 85.7
+    },
+    {
+      "nil_a": 62,
+      "nil_b": 88,
+      "shared_boundary_m_approx": 6554.0
+    },
+    {
+      "nil_a": 63,
+      "nil_b": 88,
+      "shared_boundary_m_approx": 5539.3
+    },
+    {
+      "nil_a": 64,
+      "nil_b": 65,
+      "shared_boundary_m_approx": 1571.0
+    },
+    {
+      "nil_a": 64,
+      "nil_b": 88,
+      "shared_boundary_m_approx": 1741.0
+    },
+    {
+      "nil_a": 65,
+      "nil_b": 66,
+      "shared_boundary_m_approx": 1175.3
+    },
+    {
+      "nil_a": 65,
+      "nil_b": 72,
+      "shared_boundary_m_approx": 2903.1
+    },
+    {
+      "nil_a": 65,
+      "nil_b": 88,
+      "shared_boundary_m_approx": 1423.5
+    },
+    {
+      "nil_a": 66,
+      "nil_b": 71,
+      "shared_boundary_m_approx": 1635.6
+    },
+    {
+      "nil_a": 67,
+      "nil_b": 68,
+      "shared_boundary_m_approx": 346.3
+    },
+    {
+      "nil_a": 67,
+      "nil_b": 69,
+      "shared_boundary_m_approx": 821.3
+    },
+    {
+      "nil_a": 67,
+      "nil_b": 70,
+      "shared_boundary_m_approx": 452.8
+    },
+    {
+      "nil_a": 67,
+      "nil_b": 71,
+      "shared_boundary_m_approx": 721.0
+    },
+    {
+      "nil_a": 68,
+      "nil_b": 69,
+      "shared_boundary_m_approx": 948.2
+    },
+    {
+      "nil_a": 69,
+      "nil_b": 70,
+      "shared_boundary_m_approx": 1857.0
+    },
+    {
+      "nil_a": 69,
+      "nil_b": 78,
+      "shared_boundary_m_approx": 870.4
+    },
+    {
+      "nil_a": 70,
+      "nil_b": 71,
+      "shared_boundary_m_approx": 1119.4
+    },
+    {
+      "nil_a": 70,
+      "nil_b": 78,
+      "shared_boundary_m_approx": 1126.7
+    },
+    {
+      "nil_a": 71,
+      "nil_b": 72,
+      "shared_boundary_m_approx": 1409.0
+    },
+    {
+      "nil_a": 71,
+      "nil_b": 76,
+      "shared_boundary_m_approx": 1609.3
+    },
+    {
+      "nil_a": 71,
+      "nil_b": 77,
+      "shared_boundary_m_approx": 1886.8
+    },
+    {
+      "nil_a": 72,
+      "nil_b": 73,
+      "shared_boundary_m_approx": 1388.8
+    },
+    {
+      "nil_a": 72,
+      "nil_b": 75,
+      "shared_boundary_m_approx": 1789.5
+    },
+    {
+      "nil_a": 73,
+      "nil_b": 74,
+      "shared_boundary_m_approx": 1292.9
+    },
+    {
+      "nil_a": 73,
+      "nil_b": 75,
+      "shared_boundary_m_approx": 630.0
+    },
+    {
+      "nil_a": 74,
+      "nil_b": 76,
+      "shared_boundary_m_approx": 1299.9
+    },
+    {
+      "nil_a": 75,
+      "nil_b": 76,
+      "shared_boundary_m_approx": 1166.0
+    },
+    {
+      "nil_a": 76,
+      "nil_b": 77,
+      "shared_boundary_m_approx": 404.2
+    },
+    {
+      "nil_a": 76,
+      "nil_b": 81,
+      "shared_boundary_m_approx": 1523.8
+    },
+    {
+      "nil_a": 77,
+      "nil_b": 78,
+      "shared_boundary_m_approx": 932.3
+    },
+    {
+      "nil_a": 77,
+      "nil_b": 79,
+      "shared_boundary_m_approx": 1372.8
+    },
+    {
+      "nil_a": 77,
+      "nil_b": 80,
+      "shared_boundary_m_approx": 741.6
+    },
+    {
+      "nil_a": 77,
+      "nil_b": 81,
+      "shared_boundary_m_approx": 412.3
+    },
+    {
+      "nil_a": 78,
+      "nil_b": 79,
+      "shared_boundary_m_approx": 927.2
+    },
+    {
+      "nil_a": 79,
+      "nil_b": 80,
+      "shared_boundary_m_approx": 1283.1
+    },
+    {
+      "nil_a": 80,
+      "nil_b": 81,
+      "shared_boundary_m_approx": 1607.1
+    },
+    {
+      "nil_a": 80,
+      "nil_b": 82,
+      "shared_boundary_m_approx": 332.7
+    },
+    {
+      "nil_a": 80,
+      "nil_b": 83,
+      "shared_boundary_m_approx": 938.0
+    },
+    {
+      "nil_a": 80,
+      "nil_b": 84,
+      "shared_boundary_m_approx": 1574.1
+    },
+    {
+      "nil_a": 81,
+      "nil_b": 82,
+      "shared_boundary_m_approx": 1427.5
+    },
+    {
+      "nil_a": 82,
+      "nil_b": 83,
+      "shared_boundary_m_approx": 1345.7
+    },
+    {
+      "nil_a": 83,
+      "nil_b": 84,
+      "shared_boundary_m_approx": 2257.6
+    }
+  ]
+}

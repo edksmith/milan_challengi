@@ -1,0 +1,393 @@
+{
+  "schema_version": 1,
+  "standard_challenges": [
+    {
+      "id": "mode_of_transit",
+      "title": "Mode of Transit",
+      "description": "Use different forms of Milan public transport at stops or stations physically inside the active NIL. A transit mode counts when the team boards or gets off that mode at a stop/station within the NIL.",
+      "options": [
+        "Metro",
+        "Tram",
+        "Normal bus",
+        "Trolley bus",
+        "Suburban/regional rail"
+      ],
+      "levels": [
+        {
+          "id": "level_1",
+          "label": "Level 1",
+          "requirement": "Use 1 transit mode.",
+          "count": 1
+        },
+        {
+          "id": "level_2",
+          "label": "Level 2",
+          "requirement": "Use 2 different transit modes.",
+          "count": 2
+        },
+        {
+          "id": "level_3",
+          "label": "Level 3",
+          "requirement": "Use 3 different transit modes.",
+          "count": 3
+        },
+        {
+          "id": "level_4",
+          "label": "Level 4",
+          "requirement": "Use 4 different transit modes.",
+          "count": 4
+        },
+        {
+          "id": "extreme",
+          "label": "Extreme",
+          "requirement": "Use all 5 transit modes.",
+          "count": 5
+        }
+      ],
+      "proof": "A single stop within an NIL may only be used once per transit mode. For Metro or rail, the station exit used must be inside the NIL."
+    },
+    {
+      "id": "enjoy_a_park",
+      "title": "Enjoy a Park",
+      "description": "Spend continuous time relaxing, playing, walking, sitting, or otherwise enjoying a park or garden in the active NIL. The place must be labelled or categorised as a park or garden on Google Maps.",
+      "levels": [
+        {
+          "id": "level_1",
+          "label": "Level 1",
+          "requirement": "5 minutes.",
+          "minutes": 5
+        },
+        {
+          "id": "level_2",
+          "label": "Level 2",
+          "requirement": "12 minutes.",
+          "minutes": 12
+        },
+        {
+          "id": "level_3",
+          "label": "Level 3",
+          "requirement": "25 minutes.",
+          "minutes": 25
+        },
+        {
+          "id": "level_4",
+          "label": "Level 4",
+          "requirement": "40 minutes.",
+          "minutes": 40
+        },
+        {
+          "id": "extreme",
+          "label": "Extreme",
+          "requirement": "60 minutes.",
+          "minutes": 60
+        }
+      ],
+      "proof": "Send a photo of the team in the park at the start and end of the timed period."
+    },
+    {
+      "id": "continental_cuisine",
+      "title": "Continental Cuisine",
+      "description": "Find restaurants, cafés, pubs, takeaways, or food venues in the active NIL representing cuisines from different continent groups. Google Maps must clearly label the cuisine or country/region.",
+      "options": [
+        "Asia",
+        "Africa",
+        "North America",
+        "Oceania",
+        "South America"
+      ],
+      "levels": [
+        {
+          "id": "level_1",
+          "label": "Level 1",
+          "requirement": "Find cuisine from 1 continent group.",
+          "count": 1
+        },
+        {
+          "id": "level_2",
+          "label": "Level 2",
+          "requirement": "Find cuisines from 2 different continent groups.",
+          "count": 2
+        },
+        {
+          "id": "level_3",
+          "label": "Level 3",
+          "requirement": "Find cuisines from 3 different continent groups.",
+          "count": 3
+        },
+        {
+          "id": "level_4",
+          "label": "Level 4",
+          "requirement": "Find cuisines from 4 different continent groups.",
+          "count": 4
+        },
+        {
+          "id": "extreme",
+          "label": "Extreme",
+          "requirement": "Find cuisines from all 5 continent groups.",
+          "count": 5
+        }
+      ],
+      "proof": "Use a different venue for each continent and send a photo of each venue showing its name/front. A venue serving several cuisines counts for only one continent."
+    },
+    {
+      "id": "piazza",
+      "title": "Piazza",
+      "description": "Find distinct piazze or piazzette in the active NIL named after a real person most famous as a religious figure, politician/activist, artist, scientist/engineer, or military leader. The place must be labelled Piazza or Piazzetta on Google Maps.",
+      "levels": [
+        {
+          "id": "level_1",
+          "label": "Level 1",
+          "requirement": "Find 1 qualifying piazza/piazzetta.",
+          "count": 1
+        },
+        {
+          "id": "level_2",
+          "label": "Level 2",
+          "requirement": "Find 2 qualifying piazze/piazzette.",
+          "count": 2
+        },
+        {
+          "id": "level_3",
+          "label": "Level 3",
+          "requirement": "Find 3 qualifying piazze/piazzette.",
+          "count": 3
+        },
+        {
+          "id": "level_4",
+          "label": "Level 4",
+          "requirement": "Find 4 qualifying piazze/piazzette.",
+          "count": 4
+        },
+        {
+          "id": "extreme",
+          "label": "Extreme",
+          "requirement": "Find 5 qualifying piazze/piazzette.",
+          "count": 5
+        }
+      ],
+      "proof": "Send a photo of the team at each qualifying piazza/piazzetta showing the place or sign/name where practical."
+    },
+    {
+      "id": "fiat_finder",
+      "title": "Fiat Finder",
+      "description": "Find parked Fiat Pandas in the active NIL in different qualifying colour groups.",
+      "options": [
+        "Nero Cinema / black",
+        "Rosso Passione / red",
+        "Blu Italia / blue",
+        "Verde Foresta / green",
+        "Giallo Positano / yellow"
+      ],
+      "levels": [
+        {
+          "id": "level_1",
+          "label": "Level 1",
+          "requirement": "Find 1 qualifying colour.",
+          "count": 1
+        },
+        {
+          "id": "level_2",
+          "label": "Level 2",
+          "requirement": "Find 2 different qualifying colours.",
+          "count": 2
+        },
+        {
+          "id": "level_3",
+          "label": "Level 3",
+          "requirement": "Find 3 different qualifying colours.",
+          "count": 3
+        },
+        {
+          "id": "level_4",
+          "label": "Level 4",
+          "requirement": "Find 4 different qualifying colours.",
+          "count": 4
+        },
+        {
+          "id": "extreme",
+          "label": "Extreme",
+          "requirement": "Find all 5 qualifying colours.",
+          "count": 5
+        }
+      ],
+      "proof": "Send a photo clearly showing each parked Panda and its colour. Do not photograph number plates more closely than necessary."
+    },
+    {
+      "id": "old_time_religion",
+      "title": "Old Time Religion",
+      "description": "Find a church in the active NIL listed under the required century, or an earlier century, in Wikipedia's 'Chiese di Milano' list under 'Elenco chiese'.",
+      "reference_url": "https://it.wikipedia.org/wiki/Chiese_di_Milano",
+      "levels": [
+        {
+          "id": "level_1",
+          "label": "Level 1",
+          "requirement": "XIX secolo (19th century) or earlier.",
+          "latest_century": 19
+        },
+        {
+          "id": "level_2",
+          "label": "Level 2",
+          "requirement": "XVI secolo (16th century) or earlier.",
+          "latest_century": 16
+        },
+        {
+          "id": "level_3",
+          "label": "Level 3",
+          "requirement": "XIII secolo (13th century) or earlier.",
+          "latest_century": 13
+        },
+        {
+          "id": "level_4",
+          "label": "Level 4",
+          "requirement": "X secolo (10th century) or earlier.",
+          "latest_century": 10
+        },
+        {
+          "id": "extreme",
+          "label": "Extreme",
+          "requirement": "V secolo (5th century) or earlier.",
+          "latest_century": 5
+        }
+      ],
+      "proof": "Send a photo of the team at the church. 'secolo' means century; Roman numerals are used. The church must be inside the active NIL and appear in the qualifying century section of the list."
+    },
+    {
+      "id": "milano_scavenger_hunt",
+      "title": "Milano Scavenger Hunt",
+      "description": "Find different categories of Milan-specific items within the active NIL. Each category counts only once and one physical object cannot satisfy two categories.",
+      "items": [
+        "A green Milan 'vedovella' drinking fountain",
+        "A biscione / dragon symbol",
+        "The Comune di Milano coat of arms or logo",
+        "An ATM tram, bus or trolleybus stop sign",
+        "A Metro 'M' entrance/sign",
+        "A BikeMi station",
+        "A tram or tram tracks",
+        "An Italian flag",
+        "A public statue, monument or sculpture",
+        "A mural or piece of street art",
+        "An edicola / newsstand",
+        "A gelateria",
+        "A panetteria or pasticceria",
+        "Somewhere visibly selling or advertising panettone"
+      ],
+      "levels": [
+        {
+          "id": "level_1",
+          "label": "Level 1",
+          "requirement": "Find 2 different items.",
+          "count": 2
+        },
+        {
+          "id": "level_2",
+          "label": "Level 2",
+          "requirement": "Find 4 different items.",
+          "count": 4
+        },
+        {
+          "id": "level_3",
+          "label": "Level 3",
+          "requirement": "Find 6 different items.",
+          "count": 6
+        },
+        {
+          "id": "level_4",
+          "label": "Level 4",
+          "requirement": "Find 9 different items.",
+          "count": 9
+        },
+        {
+          "id": "extreme",
+          "label": "Extreme",
+          "requirement": "Find 12 different items.",
+          "count": 12
+        }
+      ],
+      "proof": "Send photographs showing each qualifying item and enough context to establish it was found within the active NIL."
+    },
+    {
+      "id": "milanese_derby",
+      "title": "Milanese Derby",
+      "description": "Before starting, choose AC Milan or Inter Milan. Find visible items supporting or identifying the chosen club at different locations within the active NIL. The same shop/building/location counts only once.",
+      "levels": [
+        {
+          "id": "level_1",
+          "label": "Level 1",
+          "requirement": "Find 2 different items.",
+          "count": 2
+        },
+        {
+          "id": "level_2",
+          "label": "Level 2",
+          "requirement": "Find 4 different items.",
+          "count": 4
+        },
+        {
+          "id": "level_3",
+          "label": "Level 3",
+          "requirement": "Find 7 different items.",
+          "count": 7
+        },
+        {
+          "id": "level_4",
+          "label": "Level 4",
+          "requirement": "Find 11 different items.",
+          "count": 11
+        },
+        {
+          "id": "extreme",
+          "label": "Extreme",
+          "requirement": "Find 16 different items.",
+          "count": 16
+        }
+      ],
+      "proof": "Official club stores, the San Siro stadium/club museum complex, and repeated items inside one dedicated football-merchandise shop do not count. Send a photo of each qualifying item/location."
+    }
+  ],
+  "special_challenges": [
+    {
+      "id": "walking_tour",
+      "title": "Walking Tour",
+      "randomly_assigned": false,
+      "extreme_eligible": false,
+      "levels": [
+        {
+          "id": "level_1",
+          "label": "Level 1",
+          "requirement": "Walk 3 complete qualifying streets.",
+          "count": 3
+        },
+        {
+          "id": "level_2",
+          "label": "Level 2",
+          "requirement": "Walk 6 complete qualifying streets.",
+          "count": 6
+        },
+        {
+          "id": "level_3",
+          "label": "Level 3",
+          "requirement": "Walk 10 complete qualifying streets.",
+          "count": 10
+        },
+        {
+          "id": "level_4",
+          "label": "Level 4",
+          "requirement": "Walk 15 complete qualifying streets.",
+          "count": 15
+        }
+      ],
+      "description": "A qualifying street is a continuous named street within the active NIL. Walk the complete portion of the named street lying inside the NIL; ordinary intersections do not end it if the name continues."
+    },
+    {
+      "id": "have_lunch",
+      "title": "Have Lunch",
+      "randomly_assigned": true,
+      "special_weight": 2,
+      "extreme_eligible": false,
+      "levels": [],
+      "description": "Spend at least 45 continuous minutes enjoying a proper lunch in the active NIL.",
+      "duration_minutes": 45,
+      "max_successes_per_team": 1
+    }
+  ]
+}

@@ -1,0 +1,1576 @@
+{
+  "metadata": {
+    "dataset_name": "Milano Quartieri authoritative NIL game data",
+    "nil_count": 88,
+    "population_reference_date": "2025-12-31",
+    "population_city_total": 1399079,
+    "population_source": "Comune di Milano, Popolazione residente per NIL e genere 2025",
+    "population_source_url": "https://dati.comune.milano.it/en/web/portale-del-dato/w/popolazione-residente",
+    "area_source": "Shape_Area field in supplied Comune di Milano NIL GeoJSON",
+    "adjacency_rule": "shared boundary; corner-only contacts excluded",
+    "adjacency_method": "EPSG:32632 projection; 0.5 m boundary tolerance; robust shared-boundary length >20 m",
+    "adjacency_edge_count": 208
+  },
+  "nils": [
+    {
+      "id": 1,
+      "name": "DUOMO",
+      "game_municipio": 1,
+      "area_m2": 2341615.566,
+      "area_km2": 2.341616,
+      "population_2025": 15892,
+      "population_density_per_km2": 6786.8,
+      "adjacent_nil_ids": [
+        2,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "label_lon": 9.1872607,
+      "label_lat": 45.4643544
+    },
+    {
+      "id": 2,
+      "name": "BRERA",
+      "game_municipio": 1,
+      "area_m2": 1637332.916,
+      "area_km2": 1.637333,
+      "population_2025": 18110,
+      "population_density_per_km2": 11060.7,
+      "adjacent_nil_ids": [
+        1,
+        3,
+        4,
+        8,
+        9,
+        10,
+        69
+      ],
+      "label_lon": 9.1884004,
+      "label_lat": 45.4734668
+    },
+    {
+      "id": 3,
+      "name": "GIARDINI P.TA VENEZIA",
+      "game_municipio": 1,
+      "area_m2": 249637.389,
+      "area_km2": 0.249637,
+      "population_2025": 38,
+      "population_density_per_km2": 152.2,
+      "adjacent_nil_ids": [
+        2,
+        4,
+        10,
+        21
+      ],
+      "label_lon": 9.200754,
+      "label_lat": 45.4747338
+    },
+    {
+      "id": 4,
+      "name": "GUASTALLA",
+      "game_municipio": 1,
+      "area_m2": 1547962.258,
+      "area_km2": 1.547962,
+      "population_2025": 15383,
+      "population_density_per_km2": 9937.6,
+      "adjacent_nil_ids": [
+        1,
+        2,
+        3,
+        5,
+        21,
+        26,
+        27
+      ],
+      "label_lon": 9.2031773,
+      "label_lat": 45.4632968
+    },
+    {
+      "id": 5,
+      "name": "PORTA VIGENTINA - PORTA LODOVICA",
+      "game_municipio": 5,
+      "area_m2": 1135196.411,
+      "area_km2": 1.135196,
+      "population_2025": 13542,
+      "population_density_per_km2": 11929.2,
+      "adjacent_nil_ids": [
+        1,
+        4,
+        6,
+        27,
+        37
+      ],
+      "label_lon": 9.1915668,
+      "label_lat": 45.451087
+    },
+    {
+      "id": 6,
+      "name": "PORTA TICINESE - CONCA DEL NAVIGLIO",
+      "game_municipio": 5,
+      "area_m2": 1255017.314,
+      "area_km2": 1.255017,
+      "population_2025": 20100,
+      "population_density_per_km2": 16015.7,
+      "adjacent_nil_ids": [
+        1,
+        5,
+        7,
+        43,
+        44
+      ],
+      "label_lon": 9.1819524,
+      "label_lat": 45.4506028
+    },
+    {
+      "id": 7,
+      "name": "MAGENTA - S. VITTORE",
+      "game_municipio": 1,
+      "area_m2": 1390094.337,
+      "area_km2": 1.390094,
+      "population_2025": 18049,
+      "population_density_per_km2": 12984.0,
+      "adjacent_nil_ids": [
+        1,
+        6,
+        8,
+        44,
+        50,
+        51,
+        68
+      ],
+      "label_lon": 9.1696669,
+      "label_lat": 45.4646971
+    },
+    {
+      "id": 8,
+      "name": "PARCO SEMPIONE",
+      "game_municipio": 1,
+      "area_m2": 470420.285,
+      "area_km2": 0.47042,
+      "population_2025": 0,
+      "population_density_per_km2": 0.0,
+      "adjacent_nil_ids": [
+        1,
+        2,
+        7,
+        68,
+        69
+      ],
+      "label_lon": 9.1757525,
+      "label_lat": 45.473487
+    },
+    {
+      "id": 9,
+      "name": "PORTA GARIBALDI - PORTA NUOVA",
+      "game_municipio": 9,
+      "area_m2": 785638.412,
+      "area_km2": 0.785638,
+      "population_2025": 5746,
+      "population_density_per_km2": 7313.8,
+      "adjacent_nil_ids": [
+        2,
+        10,
+        11,
+        69,
+        78
+      ],
+      "label_lon": 9.1899351,
+      "label_lat": 45.4835412
+    },
+    {
+      "id": 10,
+      "name": "STAZIONE CENTRALE - PONTE SEVESO",
+      "game_municipio": 2,
+      "area_m2": 1556018.75,
+      "area_km2": 1.556019,
+      "population_2025": 17172,
+      "population_density_per_km2": 11035.9,
+      "adjacent_nil_ids": [
+        2,
+        3,
+        9,
+        11,
+        12,
+        13,
+        19,
+        20,
+        21
+      ],
+      "label_lon": 9.2054975,
+      "label_lat": 45.4886307
+    },
+    {
+      "id": 11,
+      "name": "ISOLA",
+      "game_municipio": 9,
+      "area_m2": 1322887.116,
+      "area_km2": 1.322887,
+      "population_2025": 22155,
+      "population_density_per_km2": 16747.5,
+      "adjacent_nil_ids": [
+        9,
+        10,
+        12,
+        78,
+        79
+      ],
+      "label_lon": 9.1899227,
+      "label_lat": 45.4910063
+    },
+    {
+      "id": 12,
+      "name": "MACIACHINI - MAGGIOLINA",
+      "game_municipio": 9,
+      "area_m2": 1674917.628,
+      "area_km2": 1.674918,
+      "population_2025": 26378,
+      "population_density_per_km2": 15748.8,
+      "adjacent_nil_ids": [
+        10,
+        11,
+        13,
+        14,
+        79,
+        84
+      ],
+      "label_lon": 9.1948879,
+      "label_lat": 45.4977044
+    },
+    {
+      "id": 13,
+      "name": "GRECO - SEGNANO",
+      "game_municipio": 9,
+      "area_m2": 1768602.61,
+      "area_km2": 1.768603,
+      "population_2025": 16172,
+      "population_density_per_km2": 9143.9,
+      "adjacent_nil_ids": [
+        10,
+        12,
+        14,
+        15,
+        16,
+        19
+      ],
+      "label_lon": 9.2101752,
+      "label_lat": 45.5027229
+    },
+    {
+      "id": 14,
+      "name": "NIGUARDA - CA' GRANDA - PRATO CENTENARO - Q.RE FULVIO TESTI",
+      "game_municipio": 9,
+      "area_m2": 4246804.958,
+      "area_km2": 4.246805,
+      "population_2025": 36274,
+      "population_density_per_km2": 8541.5,
+      "adjacent_nil_ids": [
+        12,
+        13,
+        15,
+        84
+      ],
+      "label_lon": 9.1951912,
+      "label_lat": 45.5166517
+    },
+    {
+      "id": 15,
+      "name": "BICOCCA",
+      "game_municipio": 9,
+      "area_m2": 1529498.332,
+      "area_km2": 1.529498,
+      "population_2025": 8699,
+      "population_density_per_km2": 5687.5,
+      "adjacent_nil_ids": [
+        13,
+        14,
+        16
+      ],
+      "label_lon": 9.2132548,
+      "label_lat": 45.5191864
+    },
+    {
+      "id": 16,
+      "name": "GORLA - PRECOTTO",
+      "game_municipio": 2,
+      "area_m2": 3001918.554,
+      "area_km2": 3.001919,
+      "population_2025": 30058,
+      "population_density_per_km2": 10012.9,
+      "adjacent_nil_ids": [
+        13,
+        15,
+        17,
+        19
+      ],
+      "label_lon": 9.2243444,
+      "label_lat": 45.512482
+    },
+    {
+      "id": 17,
+      "name": "ADRIANO",
+      "game_municipio": 2,
+      "area_m2": 2433357.509,
+      "area_km2": 2.433358,
+      "population_2025": 18203,
+      "population_density_per_km2": 7480.6,
+      "adjacent_nil_ids": [
+        16,
+        18,
+        19
+      ],
+      "label_lon": 9.2481089,
+      "label_lat": 45.5127141
+    },
+    {
+      "id": 18,
+      "name": "CIMIANO - ROTTOLE - Q.RE FELTRE",
+      "game_municipio": 3,
+      "area_m2": 4971419.177,
+      "area_km2": 4.971419,
+      "population_2025": 19500,
+      "population_density_per_km2": 3922.4,
+      "adjacent_nil_ids": [
+        17,
+        19,
+        20,
+        23
+      ],
+      "label_lon": 9.2502765,
+      "label_lat": 45.4995002
+    },
+    {
+      "id": 19,
+      "name": "PADOVA - TURRO - CRESCENZAGO",
+      "game_municipio": 2,
+      "area_m2": 2061867.45,
+      "area_km2": 2.061867,
+      "population_2025": 37976,
+      "population_density_per_km2": 18418.3,
+      "adjacent_nil_ids": [
+        10,
+        13,
+        16,
+        17,
+        18,
+        20
+      ],
+      "label_lon": 9.2307303,
+      "label_lat": 45.5021164
+    },
+    {
+      "id": 20,
+      "name": "LORETO - CASORETTO - NOLO",
+      "game_municipio": 2,
+      "area_m2": 1747499.47,
+      "area_km2": 1.747499,
+      "population_2025": 42573,
+      "population_density_per_km2": 24362.2,
+      "adjacent_nil_ids": [
+        10,
+        18,
+        19,
+        21,
+        22
+      ],
+      "label_lon": 9.2215066,
+      "label_lat": 45.4922513
+    },
+    {
+      "id": 21,
+      "name": "BUENOS AIRES - PORTA VENEZIA - PORTA MONFORTE",
+      "game_municipio": 3,
+      "area_m2": 2877433.513,
+      "area_km2": 2.877434,
+      "population_2025": 61964,
+      "population_density_per_km2": 21534.5,
+      "adjacent_nil_ids": [
+        3,
+        4,
+        10,
+        20,
+        22,
+        26
+      ],
+      "label_lon": 9.2128833,
+      "label_lat": 45.4778454
+    },
+    {
+      "id": 22,
+      "name": "CITTA' STUDI",
+      "game_municipio": 3,
+      "area_m2": 2207404.066,
+      "area_km2": 2.207404,
+      "population_2025": 35725,
+      "population_density_per_km2": 16184.2,
+      "adjacent_nil_ids": [
+        20,
+        21,
+        23,
+        25
+      ],
+      "label_lon": 9.231082,
+      "label_lat": 45.4769737
+    },
+    {
+      "id": 23,
+      "name": "LAMBRATE - ORTICA",
+      "game_municipio": 3,
+      "area_m2": 3093947.468,
+      "area_km2": 3.093947,
+      "population_2025": 12654,
+      "population_density_per_km2": 4089.9,
+      "adjacent_nil_ids": [
+        18,
+        22,
+        24,
+        25
+      ],
+      "label_lon": 9.2501025,
+      "label_lat": 45.4778216
+    },
+    {
+      "id": 24,
+      "name": "PARCO FORLANINI - CAVRIANO",
+      "game_municipio": 3,
+      "area_m2": 2926006.117,
+      "area_km2": 2.926006,
+      "population_2025": 2834,
+      "population_density_per_km2": 968.6,
+      "adjacent_nil_ids": [
+        23,
+        25,
+        30,
+        31
+      ],
+      "label_lon": 9.254741,
+      "label_lat": 45.4679235
+    },
+    {
+      "id": 25,
+      "name": "CORSICA",
+      "game_municipio": 4,
+      "area_m2": 1081288.861,
+      "area_km2": 1.081289,
+      "population_2025": 19716,
+      "population_density_per_km2": 18233.8,
+      "adjacent_nil_ids": [
+        22,
+        23,
+        24,
+        26,
+        28,
+        29,
+        30
+      ],
+      "label_lon": 9.230801,
+      "label_lat": 45.4638949
+    },
+    {
+      "id": 26,
+      "name": "XXII MARZO",
+      "game_municipio": 4,
+      "area_m2": 1637437.814,
+      "area_km2": 1.637438,
+      "population_2025": 31183,
+      "population_density_per_km2": 19043.8,
+      "adjacent_nil_ids": [
+        4,
+        21,
+        25,
+        27,
+        28
+      ],
+      "label_lon": 9.2124205,
+      "label_lat": 45.4601366
+    },
+    {
+      "id": 27,
+      "name": "PTA ROMANA",
+      "game_municipio": 4,
+      "area_m2": 1002755.6,
+      "area_km2": 1.002756,
+      "population_2025": 16151,
+      "population_density_per_km2": 16106.6,
+      "adjacent_nil_ids": [
+        4,
+        5,
+        26,
+        28,
+        36
+      ],
+      "label_lon": 9.2048729,
+      "label_lat": 45.4508298
+    },
+    {
+      "id": 28,
+      "name": "UMBRIA - MOLISE - CALVAIRATE",
+      "game_municipio": 4,
+      "area_m2": 1192351.669,
+      "area_km2": 1.192352,
+      "population_2025": 23153,
+      "population_density_per_km2": 19417.9,
+      "adjacent_nil_ids": [
+        25,
+        26,
+        27,
+        29,
+        35,
+        36
+      ],
+      "label_lon": 9.2194223,
+      "label_lat": 45.4531901
+    },
+    {
+      "id": 29,
+      "name": "ORTOMERCATO",
+      "game_municipio": 4,
+      "area_m2": 1402466.655,
+      "area_km2": 1.402467,
+      "population_2025": 4091,
+      "population_density_per_km2": 2917.0,
+      "adjacent_nil_ids": [
+        25,
+        28,
+        30,
+        35
+      ],
+      "label_lon": 9.230591,
+      "label_lat": 45.4532908
+    },
+    {
+      "id": 30,
+      "name": "TALIEDO - MORSENCHIO - Q.RE FORLANINI",
+      "game_municipio": 4,
+      "area_m2": 3821209.82,
+      "area_km2": 3.82121,
+      "population_2025": 19619,
+      "population_density_per_km2": 5134.2,
+      "adjacent_nil_ids": [
+        24,
+        25,
+        29,
+        31,
+        33,
+        35
+      ],
+      "label_lon": 9.247092,
+      "label_lat": 45.4477542
+    },
+    {
+      "id": 31,
+      "name": "MONLUE' - PONTE LAMBRO",
+      "game_municipio": 4,
+      "area_m2": 2629017.607,
+      "area_km2": 2.629018,
+      "population_2025": 6088,
+      "population_density_per_km2": 2315.7,
+      "adjacent_nil_ids": [
+        24,
+        30,
+        32
+      ],
+      "label_lon": 9.2626754,
+      "label_lat": 45.4472149
+    },
+    {
+      "id": 32,
+      "name": "TRIULZO SUPERIORE",
+      "game_municipio": 4,
+      "area_m2": 1389578.232,
+      "area_km2": 1.389578,
+      "population_2025": 1673,
+      "population_density_per_km2": 1204.0,
+      "adjacent_nil_ids": [
+        31,
+        33,
+        34,
+        35
+      ],
+      "label_lon": 9.2477088,
+      "label_lat": 45.4274513
+    },
+    {
+      "id": 33,
+      "name": "ROGOREDO - SANTA GIULIA",
+      "game_municipio": 4,
+      "area_m2": 1200116.381,
+      "area_km2": 1.200116,
+      "population_2025": 11717,
+      "population_density_per_km2": 9763.2,
+      "adjacent_nil_ids": [
+        30,
+        32,
+        35
+      ],
+      "label_lon": 9.2422209,
+      "label_lat": 45.4369366
+    },
+    {
+      "id": 34,
+      "name": "CHIARAVALLE",
+      "game_municipio": 5,
+      "area_m2": 309494.19,
+      "area_km2": 0.309494,
+      "population_2025": 1083,
+      "population_density_per_km2": 3499.3,
+      "adjacent_nil_ids": [
+        32,
+        85
+      ],
+      "label_lon": 9.2414603,
+      "label_lat": 45.4167409
+    },
+    {
+      "id": 35,
+      "name": "LODI - CORVETTO",
+      "game_municipio": 4,
+      "area_m2": 3638954.87,
+      "area_km2": 3.638955,
+      "population_2025": 36911,
+      "population_density_per_km2": 10143.3,
+      "adjacent_nil_ids": [
+        28,
+        29,
+        30,
+        32,
+        33,
+        36,
+        85
+      ],
+      "label_lon": 9.2287491,
+      "label_lat": 45.4347943
+    },
+    {
+      "id": 36,
+      "name": "SCALO ROMANA",
+      "game_municipio": 5,
+      "area_m2": 1736688.832,
+      "area_km2": 1.736689,
+      "population_2025": 12030,
+      "population_density_per_km2": 6927.0,
+      "adjacent_nil_ids": [
+        27,
+        28,
+        35,
+        37,
+        38,
+        85
+      ],
+      "label_lon": 9.2080925,
+      "label_lat": 45.4380668
+    },
+    {
+      "id": 37,
+      "name": "MORIVIONE",
+      "game_municipio": 5,
+      "area_m2": 817945.79,
+      "area_km2": 0.817946,
+      "population_2025": 7665,
+      "population_density_per_km2": 9371.0,
+      "adjacent_nil_ids": [
+        5,
+        36,
+        38,
+        42,
+        43
+      ],
+      "label_lon": 9.1937553,
+      "label_lat": 45.4405395
+    },
+    {
+      "id": 38,
+      "name": "VIGENTINO - Q.RE FATIMA",
+      "game_municipio": 5,
+      "area_m2": 1853163.406,
+      "area_km2": 1.853163,
+      "population_2025": 16273,
+      "population_density_per_km2": 8781.2,
+      "adjacent_nil_ids": [
+        36,
+        37,
+        42,
+        85
+      ],
+      "label_lon": 9.2031426,
+      "label_lat": 45.4285189
+    },
+    {
+      "id": 39,
+      "name": "QUINTOSOLE",
+      "game_municipio": 5,
+      "area_m2": 1058525.105,
+      "area_km2": 1.058525,
+      "population_2025": 845,
+      "population_density_per_km2": 798.3,
+      "adjacent_nil_ids": [
+        85
+      ],
+      "label_lon": 9.2035774,
+      "label_lat": 45.4028047
+    },
+    {
+      "id": 40,
+      "name": "RONCHETTO DELLE RANE",
+      "game_municipio": 5,
+      "area_m2": 188863.447,
+      "area_km2": 0.188863,
+      "population_2025": 761,
+      "population_density_per_km2": 4029.4,
+      "adjacent_nil_ids": [
+        85
+      ],
+      "label_lon": 9.1819692,
+      "label_lat": 45.4006315
+    },
+    {
+      "id": 41,
+      "name": "GRATOSOGLIO - Q.RE MISSAGLIA - Q.RE TERRAZZE",
+      "game_municipio": 5,
+      "area_m2": 3316447.661,
+      "area_km2": 3.316448,
+      "population_2025": 19104,
+      "population_density_per_km2": 5760.4,
+      "adjacent_nil_ids": [
+        42,
+        85,
+        86
+      ],
+      "label_lon": 9.1719978,
+      "label_lat": 45.4126672
+    },
+    {
+      "id": 42,
+      "name": "STADERA - CHIESA ROSSA - Q.RE TORRETTA - CONCA FALLATA",
+      "game_municipio": 5,
+      "area_m2": 3232115.173,
+      "area_km2": 3.232115,
+      "population_2025": 28869,
+      "population_density_per_km2": 8931.9,
+      "adjacent_nil_ids": [
+        37,
+        38,
+        41,
+        43,
+        46,
+        47,
+        85,
+        86
+      ],
+      "label_lon": 9.1793459,
+      "label_lat": 45.4290205
+    },
+    {
+      "id": 43,
+      "name": "TIBALDI",
+      "game_municipio": 5,
+      "area_m2": 786184.598,
+      "area_km2": 0.786185,
+      "population_2025": 11410,
+      "population_density_per_km2": 14513.1,
+      "adjacent_nil_ids": [
+        6,
+        37,
+        42,
+        44,
+        45
+      ],
+      "label_lon": 9.1801747,
+      "label_lat": 45.4412941
+    },
+    {
+      "id": 44,
+      "name": "PORTA TICINESE - CONCHETTA",
+      "game_municipio": 6,
+      "area_m2": 1483871.851,
+      "area_km2": 1.483872,
+      "population_2025": 16478,
+      "population_density_per_km2": 11104.7,
+      "adjacent_nil_ids": [
+        6,
+        7,
+        43,
+        45,
+        49,
+        50
+      ],
+      "label_lon": 9.1708946,
+      "label_lat": 45.4501661
+    },
+    {
+      "id": 45,
+      "name": "MONCUCCO - SAN CRISTOFORO",
+      "game_municipio": 6,
+      "area_m2": 1596113.783,
+      "area_km2": 1.596114,
+      "population_2025": 13626,
+      "population_density_per_km2": 8537.0,
+      "adjacent_nil_ids": [
+        43,
+        44,
+        46,
+        48,
+        49
+      ],
+      "label_lon": 9.1602674,
+      "label_lat": 45.4426503
+    },
+    {
+      "id": 46,
+      "name": "BARONA",
+      "game_municipio": 6,
+      "area_m2": 2006248.74,
+      "area_km2": 2.006249,
+      "population_2025": 16545,
+      "population_density_per_km2": 8246.7,
+      "adjacent_nil_ids": [
+        42,
+        45,
+        47,
+        48,
+        86
+      ],
+      "label_lon": 9.1535671,
+      "label_lat": 45.4307087
+    },
+    {
+      "id": 47,
+      "name": "CANTALUPA",
+      "game_municipio": 6,
+      "area_m2": 926681.685,
+      "area_km2": 0.926682,
+      "population_2025": 563,
+      "population_density_per_km2": 607.5,
+      "adjacent_nil_ids": [
+        42,
+        46,
+        86
+      ],
+      "label_lon": 9.1583947,
+      "label_lat": 45.4223398
+    },
+    {
+      "id": 48,
+      "name": "RONCHETTO SUL NAVIGLIO - Q.RE LODOVICO IL MORO",
+      "game_municipio": 6,
+      "area_m2": 2406306.079,
+      "area_km2": 2.406306,
+      "population_2025": 14554,
+      "population_density_per_km2": 6048.3,
+      "adjacent_nil_ids": [
+        45,
+        46,
+        49,
+        86
+      ],
+      "label_lon": 9.1375049,
+      "label_lat": 45.4373725
+    },
+    {
+      "id": 49,
+      "name": "GIAMBELLINO",
+      "game_municipio": 6,
+      "area_m2": 1968284.745,
+      "area_km2": 1.968285,
+      "population_2025": 30596,
+      "population_density_per_km2": 15544.5,
+      "adjacent_nil_ids": [
+        44,
+        45,
+        48,
+        50,
+        52,
+        53
+      ],
+      "label_lon": 9.1386147,
+      "label_lat": 45.4472039
+    },
+    {
+      "id": 50,
+      "name": "PORTA GENOVA",
+      "game_municipio": 6,
+      "area_m2": 996748.687,
+      "area_km2": 0.996749,
+      "population_2025": 15100,
+      "population_density_per_km2": 15149.3,
+      "adjacent_nil_ids": [
+        7,
+        44,
+        49,
+        51
+      ],
+      "label_lon": 9.1620236,
+      "label_lat": 45.4542122
+    },
+    {
+      "id": 51,
+      "name": "PORTA MAGENTA",
+      "game_municipio": 7,
+      "area_m2": 1306401.397,
+      "area_km2": 1.306401,
+      "population_2025": 26664,
+      "population_density_per_km2": 20410.3,
+      "adjacent_nil_ids": [
+        7,
+        50,
+        52,
+        58,
+        68
+      ],
+      "label_lon": 9.1563116,
+      "label_lat": 45.4612063
+    },
+    {
+      "id": 52,
+      "name": "BANDE NERE",
+      "game_municipio": 6,
+      "area_m2": 2663780.197,
+      "area_km2": 2.66378,
+      "population_2025": 44063,
+      "population_density_per_km2": 16541.5,
+      "adjacent_nil_ids": [
+        49,
+        51,
+        53,
+        56,
+        57,
+        60
+      ],
+      "label_lon": 9.1400191,
+      "label_lat": 45.4592802
+    },
+    {
+      "id": 53,
+      "name": "LORENTEGGIO",
+      "game_municipio": 6,
+      "area_m2": 2644338.101,
+      "area_km2": 2.644338,
+      "population_2025": 15199,
+      "population_density_per_km2": 5747.8,
+      "adjacent_nil_ids": [
+        49,
+        52,
+        55,
+        56
+      ],
+      "label_lon": 9.1166695,
+      "label_lat": 45.4514298
+    },
+    {
+      "id": 54,
+      "name": "MUGGIANO",
+      "game_municipio": 7,
+      "area_m2": 444201.657,
+      "area_km2": 0.444202,
+      "population_2025": 3048,
+      "population_density_per_km2": 6861.7,
+      "adjacent_nil_ids": [
+        55,
+        87
+      ],
+      "label_lon": 9.071328,
+      "label_lat": 45.4514978
+    },
+    {
+      "id": 55,
+      "name": "BAGGIO - Q.RE DEGLI OLMI - Q.RE VALSESIA",
+      "game_municipio": 7,
+      "area_m2": 3471750.073,
+      "area_km2": 3.47175,
+      "population_2025": 30685,
+      "population_density_per_km2": 8838.5,
+      "adjacent_nil_ids": [
+        53,
+        54,
+        56,
+        87,
+        88
+      ],
+      "label_lon": 9.08612,
+      "label_lat": 45.4590631
+    },
+    {
+      "id": 56,
+      "name": "FORZE ARMATE",
+      "game_municipio": 7,
+      "area_m2": 3206782.822,
+      "area_km2": 3.206783,
+      "population_2025": 25189,
+      "population_density_per_km2": 7854.9,
+      "adjacent_nil_ids": [
+        52,
+        53,
+        55,
+        60,
+        61,
+        88
+      ],
+      "label_lon": 9.117653,
+      "label_lat": 45.4626964
+    },
+    {
+      "id": 57,
+      "name": "SAN SIRO",
+      "game_municipio": 7,
+      "area_m2": 984888.278,
+      "area_km2": 0.984888,
+      "population_2025": 25691,
+      "population_density_per_km2": 26085.2,
+      "adjacent_nil_ids": [
+        52,
+        58,
+        60
+      ],
+      "label_lon": 9.1386665,
+      "label_lat": 45.4726814
+    },
+    {
+      "id": 58,
+      "name": "DE ANGELI - MONTE ROSA",
+      "game_municipio": 7,
+      "area_m2": 1323028.576,
+      "area_km2": 1.323029,
+      "population_2025": 21544,
+      "population_density_per_km2": 16283.9,
+      "adjacent_nil_ids": [
+        51,
+        57,
+        59,
+        66,
+        67,
+        68
+      ],
+      "label_lon": 9.1472986,
+      "label_lat": 45.4760219
+    },
+    {
+      "id": 59,
+      "name": "TRE TORRI",
+      "game_municipio": 8,
+      "area_m2": 513296.941,
+      "area_km2": 0.513297,
+      "population_2025": 2536,
+      "population_density_per_km2": 4940.6,
+      "adjacent_nil_ids": [
+        58,
+        67,
+        68
+      ],
+      "label_lon": 9.1557491,
+      "label_lat": 45.4767899
+    },
+    {
+      "id": 60,
+      "name": "STADIO - IPPODROMI",
+      "game_municipio": 7,
+      "area_m2": 3435177.507,
+      "area_km2": 3.435178,
+      "population_2025": 12924,
+      "population_density_per_km2": 3762.3,
+      "adjacent_nil_ids": [
+        52,
+        56,
+        57,
+        61,
+        65,
+        66,
+        88
+      ],
+      "label_lon": 9.1260613,
+      "label_lat": 45.4800064
+    },
+    {
+      "id": 61,
+      "name": "QUARTO CAGNINO",
+      "game_municipio": 7,
+      "area_m2": 986354.213,
+      "area_km2": 0.986354,
+      "population_2025": 9952,
+      "population_density_per_km2": 10089.7,
+      "adjacent_nil_ids": [
+        56,
+        60,
+        62,
+        88
+      ],
+      "label_lon": 9.1093839,
+      "label_lat": 45.4744891
+    },
+    {
+      "id": 62,
+      "name": "QUINTO ROMANO",
+      "game_municipio": 7,
+      "area_m2": 1645797.436,
+      "area_km2": 1.645797,
+      "population_2025": 4795,
+      "population_density_per_km2": 2913.5,
+      "adjacent_nil_ids": [
+        61,
+        63,
+        88
+      ],
+      "label_lon": 9.0903275,
+      "label_lat": 45.4787245
+    },
+    {
+      "id": 63,
+      "name": "FIGINO",
+      "game_municipio": 7,
+      "area_m2": 1424660.074,
+      "area_km2": 1.42466,
+      "population_2025": 2592,
+      "population_density_per_km2": 1819.4,
+      "adjacent_nil_ids": [
+        62,
+        88
+      ],
+      "label_lon": 9.0746961,
+      "label_lat": 45.491105
+    },
+    {
+      "id": 64,
+      "name": "TRENNO",
+      "game_municipio": 8,
+      "area_m2": 489692.083,
+      "area_km2": 0.489692,
+      "population_2025": 4008,
+      "population_density_per_km2": 8184.7,
+      "adjacent_nil_ids": [
+        65,
+        88
+      ],
+      "label_lon": 9.1028807,
+      "label_lat": 45.4926253
+    },
+    {
+      "id": 65,
+      "name": "Q.RE GALLARATESE - Q.RE SAN LEONARDO - LAMPUGNANO",
+      "game_municipio": 8,
+      "area_m2": 3895679.313,
+      "area_km2": 3.895679,
+      "population_2025": 33319,
+      "population_density_per_km2": 8552.8,
+      "adjacent_nil_ids": [
+        60,
+        64,
+        66,
+        72,
+        88
+      ],
+      "label_lon": 9.1153291,
+      "label_lat": 45.4959795
+    },
+    {
+      "id": 66,
+      "name": "QT 8",
+      "game_municipio": 8,
+      "area_m2": 1024398.653,
+      "area_km2": 1.024399,
+      "population_2025": 3977,
+      "population_density_per_km2": 3882.3,
+      "adjacent_nil_ids": [
+        58,
+        60,
+        65,
+        71
+      ],
+      "label_lon": 9.1366642,
+      "label_lat": 45.4869399
+    },
+    {
+      "id": 67,
+      "name": "PORTELLO",
+      "game_municipio": 8,
+      "area_m2": 909602.219,
+      "area_km2": 0.909602,
+      "population_2025": 8997,
+      "population_density_per_km2": 9891.1,
+      "adjacent_nil_ids": [
+        58,
+        59,
+        68,
+        69,
+        70,
+        71
+      ],
+      "label_lon": 9.1526357,
+      "label_lat": 45.4851941
+    },
+    {
+      "id": 68,
+      "name": "PAGANO",
+      "game_municipio": 8,
+      "area_m2": 1289685.562,
+      "area_km2": 1.289686,
+      "population_2025": 17651,
+      "population_density_per_km2": 13686.3,
+      "adjacent_nil_ids": [
+        7,
+        8,
+        51,
+        58,
+        59,
+        67,
+        69
+      ],
+      "label_lon": 9.1652775,
+      "label_lat": 45.4745288
+    },
+    {
+      "id": 69,
+      "name": "SARPI",
+      "game_municipio": 8,
+      "area_m2": 1811846.05,
+      "area_km2": 1.811846,
+      "population_2025": 30474,
+      "population_density_per_km2": 16819.3,
+      "adjacent_nil_ids": [
+        2,
+        8,
+        9,
+        67,
+        68,
+        70,
+        78
+      ],
+      "label_lon": 9.1717717,
+      "label_lat": 45.4836844
+    },
+    {
+      "id": 70,
+      "name": "GHISOLFA",
+      "game_municipio": 8,
+      "area_m2": 1051412.471,
+      "area_km2": 1.051412,
+      "population_2025": 18625,
+      "population_density_per_km2": 17714.3,
+      "adjacent_nil_ids": [
+        67,
+        69,
+        71,
+        78
+      ],
+      "label_lon": 9.1618931,
+      "label_lat": 45.4921096
+    },
+    {
+      "id": 71,
+      "name": "VILLAPIZZONE - CAGNOLA - BOLDINASCO",
+      "game_municipio": 8,
+      "area_m2": 3426940.964,
+      "area_km2": 3.426941,
+      "population_2025": 41808,
+      "population_density_per_km2": 12199.8,
+      "adjacent_nil_ids": [
+        66,
+        67,
+        70,
+        72,
+        76,
+        77
+      ],
+      "label_lon": 9.1457729,
+      "label_lat": 45.4972829
+    },
+    {
+      "id": 72,
+      "name": "MAGGIORE - MUSOCCO - CERTOSA",
+      "game_municipio": 8,
+      "area_m2": 3030310.823,
+      "area_km2": 3.030311,
+      "population_2025": 10508,
+      "population_density_per_km2": 3467.6,
+      "adjacent_nil_ids": [
+        65,
+        71,
+        73,
+        75
+      ],
+      "label_lon": 9.1174635,
+      "label_lat": 45.5051645
+    },
+    {
+      "id": 73,
+      "name": "CASCINA MERLATA",
+      "game_municipio": 8,
+      "area_m2": 1730639.611,
+      "area_km2": 1.73064,
+      "population_2025": 956,
+      "population_density_per_km2": 552.4,
+      "adjacent_nil_ids": [
+        72,
+        74,
+        75
+      ],
+      "label_lon": 9.0989475,
+      "label_lat": 45.5234002
+    },
+    {
+      "id": 74,
+      "name": "ROSERIO",
+      "game_municipio": 8,
+      "area_m2": 707630.075,
+      "area_km2": 0.70763,
+      "population_2025": 257,
+      "population_density_per_km2": 363.2,
+      "adjacent_nil_ids": [
+        73,
+        76
+      ],
+      "label_lon": 9.1238923,
+      "label_lat": 45.5203639
+    },
+    {
+      "id": 75,
+      "name": "STEPHENSON",
+      "game_municipio": 8,
+      "area_m2": 560084.433,
+      "area_km2": 0.560084,
+      "population_2025": 172,
+      "population_density_per_km2": 307.1,
+      "adjacent_nil_ids": [
+        72,
+        73,
+        76
+      ],
+      "label_lon": 9.1218046,
+      "label_lat": 45.5118187
+    },
+    {
+      "id": 76,
+      "name": "QUARTO OGGIARO - VIALBA - MUSOCCO",
+      "game_municipio": 8,
+      "area_m2": 2776872.196,
+      "area_km2": 2.776872,
+      "population_2025": 32914,
+      "population_density_per_km2": 11852.9,
+      "adjacent_nil_ids": [
+        71,
+        74,
+        75,
+        77,
+        81
+      ],
+      "label_lon": 9.136711,
+      "label_lat": 45.5140353
+    },
+    {
+      "id": 77,
+      "name": "BOVISA",
+      "game_municipio": 9,
+      "area_m2": 1913060.38,
+      "area_km2": 1.91306,
+      "population_2025": 13845,
+      "population_density_per_km2": 7237.1,
+      "adjacent_nil_ids": [
+        71,
+        76,
+        78,
+        79,
+        80,
+        81
+      ],
+      "label_lon": 9.159399,
+      "label_lat": 45.5032858
+    },
+    {
+      "id": 78,
+      "name": "FARINI",
+      "game_municipio": 9,
+      "area_m2": 1010192.744,
+      "area_km2": 1.010193,
+      "population_2025": 3780,
+      "population_density_per_km2": 3741.9,
+      "adjacent_nil_ids": [
+        9,
+        11,
+        69,
+        70,
+        77,
+        79
+      ],
+      "label_lon": 9.1750984,
+      "label_lat": 45.49288
+    },
+    {
+      "id": 79,
+      "name": "DERGANO",
+      "game_municipio": 9,
+      "area_m2": 1358563.67,
+      "area_km2": 1.358564,
+      "population_2025": 23901,
+      "population_density_per_km2": 17592.8,
+      "adjacent_nil_ids": [
+        11,
+        12,
+        77,
+        78,
+        80
+      ],
+      "label_lon": 9.1787337,
+      "label_lat": 45.502559
+    },
+    {
+      "id": 80,
+      "name": "AFFORI",
+      "game_municipio": 9,
+      "area_m2": 2070815.527,
+      "area_km2": 2.070816,
+      "population_2025": 25973,
+      "population_density_per_km2": 12542.4,
+      "adjacent_nil_ids": [
+        77,
+        79,
+        81,
+        82,
+        83,
+        84
+      ],
+      "label_lon": 9.1711511,
+      "label_lat": 45.5158081
+    },
+    {
+      "id": 81,
+      "name": "BOVISASCA",
+      "game_municipio": 9,
+      "area_m2": 1578027.649,
+      "area_km2": 1.578028,
+      "population_2025": 7548,
+      "population_density_per_km2": 4783.2,
+      "adjacent_nil_ids": [
+        76,
+        77,
+        80,
+        82
+      ],
+      "label_lon": 9.1558206,
+      "label_lat": 45.5169363
+    },
+    {
+      "id": 82,
+      "name": "COMASINA",
+      "game_municipio": 9,
+      "area_m2": 926681.571,
+      "area_km2": 0.926682,
+      "population_2025": 10135,
+      "population_density_per_km2": 10936.9,
+      "adjacent_nil_ids": [
+        80,
+        81,
+        83
+      ],
+      "label_lon": 9.1613564,
+      "label_lat": 45.5273242
+    },
+    {
+      "id": 83,
+      "name": "BRUZZANO",
+      "game_municipio": 9,
+      "area_m2": 1670440.132,
+      "area_km2": 1.67044,
+      "population_2025": 12684,
+      "population_density_per_km2": 7593.2,
+      "adjacent_nil_ids": [
+        80,
+        82,
+        84
+      ],
+      "label_lon": 9.1736838,
+      "label_lat": 45.5273614
+    },
+    {
+      "id": 84,
+      "name": "PARCO NORD",
+      "game_municipio": 9,
+      "area_m2": 1532331.004,
+      "area_km2": 1.532331,
+      "population_2025": 113,
+      "population_density_per_km2": 73.7,
+      "adjacent_nil_ids": [
+        12,
+        14,
+        80,
+        83
+      ],
+      "label_lon": 9.1813122,
+      "label_lat": 45.5199502
+    },
+    {
+      "id": 85,
+      "name": "PARCO DELLE ABBAZIE",
+      "game_municipio": 5,
+      "area_m2": 13733840.505,
+      "area_km2": 13.733841,
+      "population_2025": 315,
+      "population_density_per_km2": 22.9,
+      "adjacent_nil_ids": [
+        34,
+        35,
+        36,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "label_lon": 9.2253367,
+      "label_lat": 45.4100711
+    },
+    {
+      "id": 86,
+      "name": "PARCO DEI NAVIGLI",
+      "game_municipio": 6,
+      "area_m2": 3623149.414,
+      "area_km2": 3.623149,
+      "population_2025": 326,
+      "population_density_per_km2": 90.0,
+      "adjacent_nil_ids": [
+        41,
+        42,
+        46,
+        47,
+        48
+      ],
+      "label_lon": 9.1408989,
+      "label_lat": 45.4227317
+    },
+    {
+      "id": 87,
+      "name": "ASSIANO",
+      "game_municipio": 7,
+      "area_m2": 5840941.711,
+      "area_km2": 5.840942,
+      "population_2025": 224,
+      "population_density_per_km2": 38.3,
+      "adjacent_nil_ids": [
+        54,
+        55
+      ],
+      "label_lon": 9.0562336,
+      "label_lat": 45.4496819
+    },
+    {
+      "id": 88,
+      "name": "PARCO BOSCO IN CITTA'",
+      "game_municipio": 7,
+      "area_m2": 7834006.115,
+      "area_km2": 7.834006,
+      "population_2025": 686,
+      "population_density_per_km2": 87.6,
+      "adjacent_nil_ids": [
+        55,
+        56,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65
+      ],
+      "label_lon": 9.0991313,
+      "label_lat": 45.4834068
+    }
+  ]
+}
