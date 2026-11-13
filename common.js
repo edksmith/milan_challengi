@@ -1,4 +1,4 @@
-const FRONTEND_VERSION='0.5';
+const FRONTEND_VERSION='1.0';
 const TEAM_COLORS={blue:'#2563EB',green:'#16A34A',red:'#DC2626'};
 const UNCLAIMED='#D1D5DB'; const ACTIVE='#F59E0B';
 let FIXED=null, GEO=null, CHALLENGES=null, GAME=null;

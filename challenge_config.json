@@ -117,12 +117,12 @@
       "description": "Create your own Winter Games! Complete different events from the list below while inside the active NIL. Each event may count only once. Team members may divide events between themselves unless an event specifically requires both players.",
       "items": [
         "Curling: On a reasonably smooth paved surface, slide a coin or bottle cap from behind a marked starting line. It must travel at least 3 metres and come to rest no more than 1 metre to either side of its original direction of travel.",
-        "Figure Skating: Both teammates perform and film a synchronized routine lasting at least 30 seconds in a safe, open, flat area. The routine must include a spin, a small safe jump with both feet leaving the ground, and a distinctive finishing pose. Musical accompaniment is not required, but is appreciated.",
-        "Biathlon: Briskly walk at least 30 metres, then immediately attempt to throw a soft or harmless object into a bag, container, or clearly marked target from at least 2 metres away. Running is not permitted.",
-        "Ski Jumping: Make a small paper “ski jumper,” such as a folded paper football or similar paper creation. Launch it through the air so that it travels at least 2 metres before first touching the ground. The launch must be in a safe open area and must not be directed toward other people, roads, tracks, or moving vehicles.",
+        "Figure Skating: Both teammates must perform and film a synchronized routine lasting at least 30 seconds in a safe, open, flat area. The routine must include all three of these elements: a spin, a small safe jump with both feet leaving the ground, and a distinctive finishing pose. Musical accompaniment is not required, but is appreciated.",
+        "Biathlon: Briskly walk at least 30 metres, then immediately make a successful throw with a soft or harmless object into a bag, container, or clearly marked target from at least 2 metres away. Running is not permitted.",
+        "Ski Jumping: Make a small paper “ski jumper,” such as a folded paper football or similar paper creation. Launch it through the air so that it travels at least 2 metres before first touching the ground. The launch must take place in a safe open area and must not be directed toward other people, roads, tracks, or moving vehicles.",
         "Ski Mountaineering: Climb at least 30 public steps in one continuous ascent, walking normally. Film the athlete reaching the top and celebrating at the “summit.”",
         "Luge: Find a safe slope or ramp, away from traffic. Release a small object and allow gravity to carry it at least 8 metres without the object being pushed, kicked, or touched again by the team after release. A teammate must remain in a safe position to retrieve or stop the object, and the course must not cross roads, cycle paths, active stairs, or other busy pedestrian routes.",
-        "Hockey Shoot-Out: On a smooth surface, create a goal approximately 30 cm wide using two markers. From at least 2 metres away, the two teammates take turns attempting to slide a coin or bottle cap into the goal. Each player takes 7 shots. The player with the most goals wins and must perform and film an appropriately dramatic hockey-style goal celebration (“celly”). If tied after seven shots each, continue with sudden-death shots until there is a winner."
+        "Hockey Shoot-Out: On a smooth surface, create a goal approximately 30 cm wide using two markers. From at least 2 metres away, the two teammates take turns attempting to slide the coin or bottle cap into the goal. Each player takes 7 shots. The player who scores the most goals wins the shoot-out and must perform and film an appropriately dramatic hockey-style goal celebration (“celly”). If the score is tied after seven shots each, continue with sudden-death shots until there is a winner."
       ],
       "levels": [
         {
@@ -189,9 +189,9 @@
           "count": 5
         }
       ],
-      "proof": "Send a photo clearly showing each Panda and its colour. If you are unsure about the colour, you can use an AI tool to confirm. The car must be parked and in a public area. Do not photograph number plates more closely than necessary.",
+      "proof": "Send a photo clearly showing each Panda and its colour. If you are unsure about the colour, consult the reference guide and ask the group chat for a ruling. The car must be parked and in a public area. Do not photograph number plates more closely than necessary.",
       "reference_url": "fiat_reference.html",
-      "reference_label": "Fiat Panda reference guide"
+      "reference_label": "Fiat Panda Finder — Reference Guide"
     },
     {
       "id": "old_time_religion",
@@ -307,7 +307,7 @@
       ],
       "proof": "Official club stores, the San Siro stadium/club museum complex, and repeated items inside one dedicated football-merchandise shop do not count. Send a photo of each qualifying item/location.",
       "reference_url": "derby_reference.html",
-      "reference_label": "Milan Derby reference guide"
+      "reference_label": "Milanese Derby — Reference Guide"
     }
   ],
   "special_challenges": [
