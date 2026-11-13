@@ -1,3 +1,4 @@
+const FRONTEND_VERSION='0.5';
 const TEAM_COLORS={blue:'#2563EB',green:'#16A34A',red:'#DC2626'};
 const UNCLAIMED='#D1D5DB'; const ACTIVE='#F59E0B';
 let FIXED=null, GEO=null, CHALLENGES=null, GAME=null;
@@ -35,6 +36,7 @@ function esc(x){return String(x??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&l
 function fmt(n,d=1){return Number(n||0).toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d});}
 function fmtTime(iso){if(!iso)return '—';return new Date(iso).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});}
 function phaseLabel(p){return ({pre_game:'Pre-game',saturday_live:'Saturday live',saturday_rest:'Rest period',sunday_planning:'Sunday planning',sunday_live:'Sunday live',ended:'Game ended'})[p]||p;}
+function renderVersionStatus(state,el){if(!el)return;const backend=state&&state.backendVersion?String(state.backendVersion):'unknown';const match=backend===FRONTEND_VERSION;el.className='pill '+(match?'ok':'error');el.textContent=`Frontend v${FRONTEND_VERSION} · Backend v${backend}${match?'':' ⚠'}`;}
 function teamName(id){const t=GAME.teams.find(x=>x.id===id);return t?t.name:id;}
 function ownerOf(state,id){const c=state.claims[String(Number(id))];return c?c.teamId:null;}
 function activeCard(state,id){return state.board.find(c=>Number(c.nilId)===Number(id));}
@@ -56,7 +58,7 @@ function cardChallengeHtml(card,myTeam){
     }
     if(detailItems.length) html+='<ul class="detail-list">'+detailItems.map(x=>`<li>${esc(x)}</li>`).join('')+'</ul>';
     if(c.proof) html+=`<p class="section-note"><strong>Proof:</strong> ${esc(c.proof)}</p>`;
-    if(c.reference_url) html+=`<p><a href="${esc(c.reference_url)}" target="_blank" rel="noopener">Reference list</a></p>`;
+    if(c.reference_url) html+=`<p><a href="${esc(c.reference_url)}" target="_blank" rel="noopener">${esc(c.reference_label||'Reference guide')}</a></p>`;
     html+='</details>';
   }
   return html;

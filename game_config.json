@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "game_id": "milano_quartieri_2026",
   "title": "Milano Quartieri Challengi",
   "timezone": "Europe/Rome",
@@ -84,7 +84,11 @@
     "opponents_cannot_claim_start_pair_until_assigned_team_has_opening_claim": true,
     "first_distinct_team_opening_claim_expands_to": 7,
     "second_distinct_team_opening_claim_expands_to": 8,
-    "new_opening_draws_exclude_initial_six": true
+    "new_opening_draws_exclude_initial_six": true,
+    "assigned_start_pair_protected_until_team_first_claim": true,
+    "incomplete_team_may_claim_non_starting_active_nil": true,
+    "incomplete_team_cannot_claim_other_starting_nil": true,
+    "first_successful_eligible_claim_completes_opening": true
   },
   "board": {
     "normal_size": 8,
@@ -180,5 +184,6 @@
     "geojson": "nil_data.geojson",
     "adjacency": "adjacency.json",
     "challenges": "challenge_config.json"
-  }
+  },
+  "tracker_version": "0.5"
 }

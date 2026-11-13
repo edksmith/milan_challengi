@@ -1,10 +1,10 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "standard_challenges": [
     {
       "id": "mode_of_transit",
       "title": "Mode of Transit",
-      "description": "Use different forms of Milan public transport at stops or stations physically inside the active NIL. A transit mode counts when the team boards or gets off that mode at a stop/station within the NIL.",
+      "description": "Use different forms of Milan public transport at stops or stations physically inside the active NIL. A transit mode counts when the team boards or gets off that transit mode at a stop/station within the NIL.",
       "options": [
         "Metro",
         "Tram",
@@ -28,12 +28,6 @@
         {
           "id": "level_3",
           "label": "Level 3",
-          "requirement": "Use 3 different transit modes.",
-          "count": 3
-        },
-        {
-          "id": "level_4",
-          "label": "Level 4",
           "requirement": "Use 4 different transit modes.",
           "count": 4
         },
@@ -66,28 +60,22 @@
         {
           "id": "level_3",
           "label": "Level 3",
-          "requirement": "25 minutes.",
-          "minutes": 25
-        },
-        {
-          "id": "level_4",
-          "label": "Level 4",
-          "requirement": "40 minutes.",
-          "minutes": 40
+          "requirement": "30 minutes.",
+          "minutes": 30
         },
         {
           "id": "extreme",
           "label": "Extreme",
-          "requirement": "60 minutes.",
-          "minutes": 60
+          "requirement": "40 minutes.",
+          "minutes": 40
         }
       ],
-      "proof": "Send a photo of the team in the park at the start and end of the timed period."
+      "proof": "Send a photo of the team in the park at the start and end of the timed period. This can be completed while the team is on its normal 30-minute lunch break."
     },
     {
       "id": "continental_cuisine",
       "title": "Continental Cuisine",
-      "description": "Find restaurants, cafés, pubs, takeaways, or food venues in the active NIL representing cuisines from different continent groups. Google Maps must clearly label the cuisine or country/region.",
+      "description": "Find restaurants, cafés, pubs, takeaways, or food venues in the active NIL representing cuisines from different continents. Google Maps must label the venue with a cuisine or country/region that clearly belongs to the relevant continent.",
       "options": [
         "Asia",
         "Africa",
@@ -111,12 +99,6 @@
         {
           "id": "level_3",
           "label": "Level 3",
-          "requirement": "Find cuisines from 3 different continent groups.",
-          "count": 3
-        },
-        {
-          "id": "level_4",
-          "label": "Level 4",
           "requirement": "Find cuisines from 4 different continent groups.",
           "count": 4
         },
@@ -127,56 +109,59 @@
           "count": 5
         }
       ],
-      "proof": "Use a different venue for each continent and send a photo of each venue showing its name/front. A venue serving several cuisines counts for only one continent."
+      "proof": "Use a different venue for each continent and send a photo of each venue showing its name/front. A venue serving several cuisines can count for only one continent."
     },
     {
-      "id": "piazza",
-      "title": "Piazza",
-      "description": "Find distinct piazze or piazzette in the active NIL named after a real person most famous as a religious figure, politician/activist, artist, scientist/engineer, or military leader. The place must be labelled Piazza or Piazzetta on Google Maps.",
+      "id": "milano_2026_olympic_mini_games",
+      "title": "Milan 2026 Olympic Mini Games",
+      "description": "Create your own Winter Games! Complete different events from the list below while inside the active NIL. Each event may count only once. Team members may divide events between themselves unless an event specifically requires both players.",
+      "items": [
+        "Curling: On a reasonably smooth paved surface, slide a coin or bottle cap from behind a marked starting line. It must travel at least 3 metres and come to rest no more than 1 metre to either side of its original direction of travel.",
+        "Figure Skating: Both teammates perform and film a synchronized routine lasting at least 30 seconds in a safe, open, flat area. The routine must include a spin, a small safe jump with both feet leaving the ground, and a distinctive finishing pose. Musical accompaniment is not required, but is appreciated.",
+        "Biathlon: Briskly walk at least 30 metres, then immediately attempt to throw a soft or harmless object into a bag, container, or clearly marked target from at least 2 metres away. Running is not permitted.",
+        "Ski Jumping: Make a small paper “ski jumper,” such as a folded paper football or similar paper creation. Launch it through the air so that it travels at least 2 metres before first touching the ground. The launch must be in a safe open area and must not be directed toward other people, roads, tracks, or moving vehicles.",
+        "Ski Mountaineering: Climb at least 30 public steps in one continuous ascent, walking normally. Film the athlete reaching the top and celebrating at the “summit.”",
+        "Luge: Find a safe slope or ramp, away from traffic. Release a small object and allow gravity to carry it at least 8 metres without the object being pushed, kicked, or touched again by the team after release. A teammate must remain in a safe position to retrieve or stop the object, and the course must not cross roads, cycle paths, active stairs, or other busy pedestrian routes.",
+        "Hockey Shoot-Out: On a smooth surface, create a goal approximately 30 cm wide using two markers. From at least 2 metres away, the two teammates take turns attempting to slide a coin or bottle cap into the goal. Each player takes 7 shots. The player with the most goals wins and must perform and film an appropriately dramatic hockey-style goal celebration (“celly”). If tied after seven shots each, continue with sudden-death shots until there is a winner."
+      ],
       "levels": [
         {
           "id": "level_1",
           "label": "Level 1",
-          "requirement": "Find 1 qualifying piazza/piazzetta.",
-          "count": 1
+          "requirement": "Complete 2 Olympic events.",
+          "count": 2
         },
         {
           "id": "level_2",
           "label": "Level 2",
-          "requirement": "Find 2 qualifying piazze/piazzette.",
-          "count": 2
+          "requirement": "Complete 3 Olympic events.",
+          "count": 3
         },
         {
           "id": "level_3",
           "label": "Level 3",
-          "requirement": "Find 3 qualifying piazze/piazzette.",
-          "count": 3
-        },
-        {
-          "id": "level_4",
-          "label": "Level 4",
-          "requirement": "Find 4 qualifying piazze/piazzette.",
-          "count": 4
+          "requirement": "Complete 5 Olympic events.",
+          "count": 5
         },
         {
           "id": "extreme",
           "label": "Extreme",
-          "requirement": "Find 5 qualifying piazze/piazzette.",
-          "count": 5
+          "requirement": "Complete all 7 Olympic events.",
+          "count": 7
         }
       ],
-      "proof": "Send a photo of the team at each qualifying piazza/piazzetta showing the place or sign/name where practical."
+      "proof": "Where video proof is required, each completed event must be shown in one continuous video clip. Different events may take place at the same or different locations within the active NIL. All events must be completed entirely within the active NIL."
     },
     {
       "id": "fiat_finder",
       "title": "Fiat Finder",
-      "description": "Find parked Fiat Pandas in the active NIL in different qualifying colour groups.",
+      "description": "Italy’s best-selling car is the Fiat Panda. Find parked Fiat Pandas in the active NIL in different qualifying colours. The Panda may be from any generation, but must clearly be identifiable as a Fiat Panda.",
       "options": [
-        "Nero Cinema / black",
-        "Rosso Passione / red",
-        "Blu Italia / blue",
-        "Verde Foresta / green",
-        "Giallo Positano / yellow"
+        "Nero Cinema — Black",
+        "Rosso Passione — Red",
+        "Blu Italia — Blue",
+        "Verde Foresta — Green",
+        "Giallo Positano — Yellow"
       ],
       "levels": [
         {
@@ -194,12 +179,6 @@
         {
           "id": "level_3",
           "label": "Level 3",
-          "requirement": "Find 3 different qualifying colours.",
-          "count": 3
-        },
-        {
-          "id": "level_4",
-          "label": "Level 4",
           "requirement": "Find 4 different qualifying colours.",
           "count": 4
         },
@@ -210,13 +189,16 @@
           "count": 5
         }
       ],
-      "proof": "Send a photo clearly showing each parked Panda and its colour. Do not photograph number plates more closely than necessary."
+      "proof": "Send a photo clearly showing each Panda and its colour. If you are unsure about the colour, you can use an AI tool to confirm. The car must be parked and in a public area. Do not photograph number plates more closely than necessary.",
+      "reference_url": "fiat_reference.html",
+      "reference_label": "Fiat Panda reference guide"
     },
     {
       "id": "old_time_religion",
       "title": "Old Time Religion",
-      "description": "Find a church in the active NIL listed under the required century, or an earlier century, in Wikipedia's 'Chiese di Milano' list under 'Elenco chiese'.",
+      "description": "Find an old church in the active NIL that appears under a qualifying century heading in the Italian Wikipedia list “Chiese di Milano” under “Elenco chiese”.",
       "reference_url": "https://it.wikipedia.org/wiki/Chiese_di_Milano",
+      "reference_label": "Chiese di Milano reference list",
       "levels": [
         {
           "id": "level_1",
@@ -233,12 +215,6 @@
         {
           "id": "level_3",
           "label": "Level 3",
-          "requirement": "XIII secolo (13th century) or earlier.",
-          "latest_century": 13
-        },
-        {
-          "id": "level_4",
-          "label": "Level 4",
           "requirement": "X secolo (10th century) or earlier.",
           "latest_century": 10
         },
@@ -249,18 +225,18 @@
           "latest_century": 5
         }
       ],
-      "proof": "Send a photo of the team at the church. 'secolo' means century; Roman numerals are used. The church must be inside the active NIL and appear in the qualifying century section of the list."
+      "proof": "“secolo” means century and Roman numerals are used. Send a photo of your team at the church. The church must be physically located within the active NIL and must appear in the qualifying century section of the Wikipedia list."
     },
     {
       "id": "milano_scavenger_hunt",
       "title": "Milano Scavenger Hunt",
-      "description": "Find different categories of Milan-specific items within the active NIL. Each category counts only once and one physical object cannot satisfy two categories.",
+      "description": "Explore the active NIL and find different things from the Milano Scavenger Hunt list below. Each category may count only once toward the challenge. The same physical object cannot be used for two different categories.",
       "items": [
-        "A green Milan 'vedovella' drinking fountain",
+        "A green Milan ‘vedovella’ drinking fountain",
         "A biscione / dragon symbol",
         "The Comune di Milano coat of arms or logo",
         "An ATM tram, bus or trolleybus stop sign",
-        "A Metro 'M' entrance/sign",
+        "A Metro “M” entrance/sign",
         "A BikeMi station",
         "A tram or tram tracks",
         "An Italian flag",
@@ -275,24 +251,18 @@
         {
           "id": "level_1",
           "label": "Level 1",
-          "requirement": "Find 2 different items.",
-          "count": 2
+          "requirement": "Find 3 different items.",
+          "count": 3
         },
         {
           "id": "level_2",
           "label": "Level 2",
-          "requirement": "Find 4 different items.",
-          "count": 4
+          "requirement": "Find 5 different items.",
+          "count": 5
         },
         {
           "id": "level_3",
           "label": "Level 3",
-          "requirement": "Find 6 different items.",
-          "count": 6
-        },
-        {
-          "id": "level_4",
-          "label": "Level 4",
           "requirement": "Find 9 different items.",
           "count": 9
         },
@@ -303,45 +273,41 @@
           "count": 12
         }
       ],
-      "proof": "Send photographs showing each qualifying item and enough context to establish it was found within the active NIL."
+      "proof": "Send photographs showing each qualifying item. The photographs must make it reasonably clear what the item is and that it was found within the active NIL."
     },
     {
       "id": "milanese_derby",
       "title": "Milanese Derby",
-      "description": "Before starting, choose AC Milan or Inter Milan. Find visible items supporting or identifying the chosen club at different locations within the active NIL. The same shop/building/location counts only once.",
+      "description": "Before starting, choose either AC Milan or Inter Milan as your chosen team. Find visible items supporting or identifying the chosen club at different locations within the active NIL. The same shop/building/location can count only once.",
       "levels": [
         {
           "id": "level_1",
           "label": "Level 1",
-          "requirement": "Find 2 different items.",
-          "count": 2
+          "requirement": "Find 3 different items.",
+          "count": 3
         },
         {
           "id": "level_2",
           "label": "Level 2",
-          "requirement": "Find 4 different items.",
-          "count": 4
+          "requirement": "Find 5 different items.",
+          "count": 5
         },
         {
           "id": "level_3",
           "label": "Level 3",
-          "requirement": "Find 7 different items.",
-          "count": 7
-        },
-        {
-          "id": "level_4",
-          "label": "Level 4",
-          "requirement": "Find 11 different items.",
-          "count": 11
+          "requirement": "Find 9 different items.",
+          "count": 9
         },
         {
           "id": "extreme",
           "label": "Extreme",
-          "requirement": "Find 16 different items.",
-          "count": 16
+          "requirement": "Find 12 different items.",
+          "count": 12
         }
       ],
-      "proof": "Official club stores, the San Siro stadium/club museum complex, and repeated items inside one dedicated football-merchandise shop do not count. Send a photo of each qualifying item/location."
+      "proof": "Official club stores, the San Siro stadium/club museum complex, and repeated items inside one dedicated football-merchandise shop do not count. Send a photo of each qualifying item/location.",
+      "reference_url": "derby_reference.html",
+      "reference_label": "Milan Derby reference guide"
     }
   ],
   "special_challenges": [
@@ -350,33 +316,34 @@
       "title": "Walking Tour",
       "randomly_assigned": false,
       "extreme_eligible": false,
+      "description": "Walking Tour is the universal wildcard and is not assigned to a NIL. A qualifying street is a named public street, road, lane, or pedestrian street shown on Google Maps. To count a street, walk one continuous qualifying portion entirely within the active NIL. The portion ends at the NIL boundary, the physical beginning/end or dead end, a name change, or a clear split into a differently named street. Ordinary intersections do not end a street if the same name continues. If the portion is 300 metres or less, walk the whole portion; if longer, any continuous 300-metre section within the NIL qualifies. Each named street may count only once.",
       "levels": [
         {
           "id": "level_1",
           "label": "Level 1",
-          "requirement": "Walk 3 complete qualifying streets.",
+          "requirement": "Walk 3 qualifying streets.",
           "count": 3
         },
         {
           "id": "level_2",
           "label": "Level 2",
-          "requirement": "Walk 6 complete qualifying streets.",
+          "requirement": "Walk 6 qualifying streets.",
           "count": 6
         },
         {
           "id": "level_3",
           "label": "Level 3",
-          "requirement": "Walk 10 complete qualifying streets.",
+          "requirement": "Walk 10 qualifying streets.",
           "count": 10
         },
         {
           "id": "level_4",
           "label": "Level 4",
-          "requirement": "Walk 15 complete qualifying streets.",
+          "requirement": "Walk 15 qualifying streets.",
           "count": 15
         }
       ],
-      "description": "A qualifying street is a continuous named street within the active NIL. Walk the complete portion of the named street lying inside the NIL; ordinary intersections do not end it if the name continues."
+      "proof": "There is no Extreme Walking Tour level. The entire qualifying walk must take place on foot and within the active NIL. Crossing an ordinary intersection does not interrupt a street if the same street name continues on the other side."
     },
     {
       "id": "have_lunch",
@@ -385,7 +352,8 @@
       "special_weight": 2,
       "extreme_eligible": false,
       "levels": [],
-      "description": "Spend at least 45 continuous minutes enjoying a proper lunch in the active NIL.",
+      "description": "Spend at least 45 continuous minutes enjoying a proper lunch in the active NIL. It may not be started before 11:00 Saturday and may not be completed after 15:00. Completing it satisfies the team’s mandatory Saturday lunch break. Each team may successfully complete Have Lunch only once.",
+      "proof": "Send a photo of the team enjoying lunch.",
       "duration_minutes": 45,
       "max_successes_per_team": 1
     }

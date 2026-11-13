@@ -5,13 +5,20 @@ function ensureKey(){if(TEAM_KEY)return true;TEAM_KEY=prompt('Enter the access k
 async function init(){await loadFixed();if(!initIdentity())return;document.getElementById('teamBadge').className='team-badge team-'+TEAM_ID;document.getElementById('teamBadge').textContent=teamName(TEAM_ID);if(!backendUrl()){const w=document.getElementById('configWarning');w.classList.remove('hidden');w.textContent='Backend URL not configured yet. Paste the Apps Script /exec URL into backend-config.js.';return;}if(!ensureKey())return;await refresh();setInterval(()=>{if(!busy)refresh(true);},15000);}
 async function refresh(silent=false){try{if(!silent)setConn('warn','Updating…');const s=await jsonp('teamState',{team:TEAM_ID,key:TEAM_KEY});STATE=s;renderAll();setConn('ok','Live');}catch(e){setConn('error',e.message);if(String(e.message).includes('access key')){localStorage.removeItem('mq_key_'+TEAM_ID);TEAM_KEY='';}}}
 function setConn(cls,text){const e=document.getElementById('conn');e.className='pill '+cls;e.textContent=text;}
-function renderAll(){document.getElementById('phase').textContent=phaseLabel(STATE.phase);document.getElementById('serverTime').textContent='Server '+fmtTime(STATE.serverTime);document.getElementById('nextRefresh').textContent=STATE.nextRefreshAt?'Next refresh '+fmtTime(STATE.nextRefreshAt):'No more refreshes';renderEventBanner();renderScores(STATE,document.getElementById('scores'));renderBonus(STATE,document.getElementById('bonus'));renderBoard();renderRefresh();renderInventory();renderLunch();renderLog(STATE,document.getElementById('log'));if(!MAPOBJ)MAPOBJ=createMap('map',STATE);else updateMap(MAPOBJ,STATE);}
+function renderAll(){document.getElementById('phase').textContent=phaseLabel(STATE.phase);document.getElementById('serverTime').textContent='Server '+fmtTime(STATE.serverTime);document.getElementById('nextRefresh').textContent=STATE.nextRefreshAt?'Next refresh '+fmtTime(STATE.nextRefreshAt):'No more refreshes';renderVersionStatus(STATE,document.getElementById('version'));renderEventBanner();renderScores(STATE,document.getElementById('scores'));renderBonus(STATE,document.getElementById('bonus'));renderBoard();renderRefresh();renderInventory();renderLunch();renderLog(STATE,document.getElementById('log'));if(!MAPOBJ)MAPOBJ=createMap('map',STATE);else updateMap(MAPOBJ,STATE);}
 
 function openingDirectionConfig(id){return GAME.opening.directions.find(d=>d.id===id);}
 function canClaimCardNow(nilId){
   const my=STATE.myTeam,n=Number(nilId);
   if(!STATE.phase.includes('live')) return false;
-  if(!my.openingComplete){const d=openingDirectionConfig(my.openingDirection);return d.nil_ids.includes(n);}
+  const starterIds=GAME.opening.directions.flatMap(d=>d.nil_ids.map(Number));
+  if(!my.openingComplete){
+    const own=openingDirectionConfig(my.openingDirection).nil_ids.map(Number);
+    if(own.includes(n)) return true;
+    // An incomplete team may use a newly drawn non-starting NIL as its first claim,
+    // but may not poach another team's starting NIL even after it becomes unprotected.
+    return !starterIds.includes(n);
+  }
   for(const t of Object.values(STATE.teams)){if(t.id===TEAM_ID||t.openingComplete)continue;const d=openingDirectionConfig(t.openingDirection);if(d.nil_ids.includes(n))return false;}
   return true;
 }
@@ -19,11 +26,11 @@ function openingProtectionLabel(nilId){for(const t of Object.values(STATE.teams)
 function occupancyOwner(nilId){return Object.values(STATE.teams).find(t=>Number(t.occupancyNilId)===Number(nilId));}
 function renderBoard(){
   const el=document.getElementById('board'),my=STATE.myTeam;let intro='';
-  if(!my.openingComplete){const d=openingDirectionConfig(my.openingDirection);intro=`<div class="warning-box board-intro"><strong>Opening direction: ${esc(d.label)}</strong><br>Your first claim must be ${d.nil_ids.map(id=>esc(nilData(id).name)).join(' or ')}. Other teams cannot claim these until you open.</div>`;}
+  if(!my.openingComplete){const d=openingDirectionConfig(my.openingDirection);intro=`<div class="warning-box board-intro"><strong>Opening direction: ${esc(d.label)}</strong><br>Your protected starters are ${d.nil_ids.map(id=>esc(nilData(id).name)).join(' and ')}. Your first claim may be one of these, or any non-starting NIL that has subsequently entered the board. You may not use another team's starting NIL as your first claim.</div>`;}
   el.innerHTML=intro+STATE.board.map(card=>{
     const n=nilData(card.nilId),protectedBy=occupancyOwner(card.nilId),allowed=canClaimCardNow(card.nilId),openingProtected=openingProtectionLabel(card.nilId);
     const markers=[protectedBy?'🛡 occupied':'',openingProtected].filter(Boolean).join(' · ');
-    return `<div class="card active"><div class="card-title">${esc(n.name)}</div><div class="sub">Municipio ${n.game_municipio}${markers?' · '+esc(markers):''}</div>${cardChallengeHtml(card,my)}<div class="actions"><button class="btn team-${TEAM_ID}" data-claim="${card.nilId}" ${allowed?'':'disabled'}>${allowed?'Claim NIL':'Opening protected'}</button></div></div>`;
+    return `<div class="card active"><div class="card-title">${esc(n.name)}</div><div class="sub">Municipio ${n.game_municipio}${markers?' · '+esc(markers):''}</div>${cardChallengeHtml(card,my)}<div class="actions"><button class="btn team-${TEAM_ID}" data-claim="${card.nilId}" ${allowed?'':'disabled'}>${allowed?'Claim NIL':(!my.openingComplete?'Not eligible as first claim':'Opening protected')}</button></div></div>`;
   }).join('');
   el.querySelectorAll('[data-claim]:not([disabled])').forEach(b=>b.onclick=()=>openClaim(Number(b.dataset.claim)));
 }
@@ -63,8 +70,9 @@ function renderRefresh(){
 function renderInventory(){const my=STATE.myTeam;let h='<div class="table-scroll"><table class="inventory-table"><thead><tr><th>Challenge</th><th>Levels</th></tr></thead><tbody>';CHALLENGES.standard_challenges.forEach(c=>{h+=`<tr><td>${esc(c.title)}</td><td>`+c.levels.map(l=>{const st=my.inventory.standard[c.id][l.id];return `<span class="level-chip ${st}">${esc(l.label)}${st==='zombie'?' ↻':''}</span>`;}).join('')+'</td></tr>';});h+=`<tr><td>Walking Tour</td><td>`+challengeData('walking_tour').levels.map(l=>{const st=my.inventory.walking[l.id];return `<span class="level-chip ${st}">${esc(l.label)}${st==='zombie'?' ↻':''}</span>`;}).join('')+'</td></tr></tbody></table></div>';document.getElementById('inventory').innerHTML=h;}
 function renderLunch(){const my=STATE.myTeam;document.getElementById('lunch').innerHTML=`<div>Mandatory break: <strong>${my.lunchBreakComplete?'complete':'not yet recorded'}</strong></div><div>Have Lunch claim: <strong>${my.haveLunchComplete?'used':'available'}</strong></div>${!my.lunchBreakComplete?'<div class="actions"><button id="markLunch" class="btn secondary">Mark normal 30-minute lunch complete</button></div>':''}`;const b=document.getElementById('markLunch');if(b)b.onclick=()=>{if(confirm('Mark your mandatory normal lunch break complete?'))act({action:'markLunchBreak',team:TEAM_ID,key:TEAM_KEY},{success:'Lunch break marked complete.'});};}
 
-function seenNoticeIds(){try{return JSON.parse(localStorage.getItem('mq_seen_notices_'+TEAM_ID)||'[]');}catch(_e){return [];}}
-function markNoticeSeen(id){const seen=seenNoticeIds();if(!seen.includes(id))seen.push(id);localStorage.setItem('mq_seen_notices_'+TEAM_ID,JSON.stringify(seen.slice(-100)));}
+function noticeStorageKey(){return 'mq_seen_notices_'+TEAM_ID+'_'+String((STATE&&STATE.sessionId)||'legacy');}
+function seenNoticeIds(){try{return JSON.parse(localStorage.getItem(noticeStorageKey())||'[]');}catch(_e){return [];}}
+function markNoticeSeen(id){const seen=seenNoticeIds();if(!seen.includes(id))seen.push(id);localStorage.setItem(noticeStorageKey(),JSON.stringify(seen.slice(-120)));}
 function markNoticesSeen(ids){(ids||[]).forEach(markNoticeSeen);}
 function noticeFromServer(n){
   if(n.kind==='refresh'){
@@ -95,11 +103,14 @@ function noticeCandidates(){
   (STATE.notices||[]).map(noticeFromServer).filter(Boolean).forEach(n=>byId[n.id]=n);
   const r=STATE.lastRefreshResult;
   if(r&&r.processedAt){
-    const fallback=noticeFromServer({id:'refresh:'+r.id,at:r.processedAt,kind:'refresh',removedNilIds:r.removedNilIds||[],addedNilIds:r.addedNilIds||[],blockedNilIds:r.blockedNilIds||[]});
+    // Use processedAt + session, not the scheduled refresh key, so a reset/test can
+    // never collide with a notice the browser dismissed in an earlier session.
+    const fallbackId='refresh-result:'+String(STATE.sessionId||'legacy')+':'+String(r.processedAt);
+    const fallback=noticeFromServer({id:fallbackId,at:r.processedAt,kind:'refresh',removedNilIds:r.removedNilIds||[],addedNilIds:r.addedNilIds||[],blockedNilIds:r.blockedNilIds||[]});
     if(fallback&&!byId[fallback.id])byId[fallback.id]=fallback;
   }
   (STATE.zombieEvents||[]).filter(z=>z.firedAt).forEach(z=>{
-    const fallback=noticeFromServer({id:'zombie:'+z.id+':'+z.firedAt,at:z.firedAt,kind:'zombie',restorations:z.restorations||[],outcomes:z.outcomes||[]});
+    const fallback=noticeFromServer({id:'zombie-result:'+String(STATE.sessionId||'legacy')+':'+z.id+':'+z.firedAt,at:z.firedAt,kind:'zombie',restorations:z.restorations||[],outcomes:z.outcomes||[]});
     if(fallback&&!byId[fallback.id])byId[fallback.id]=fallback;
   });
   return Object.values(byId).sort((a,b)=>new Date(b.at)-new Date(a.at));

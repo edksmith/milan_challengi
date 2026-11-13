@@ -3,7 +3,7 @@ const GM_DRAFT={testClock:null};
 async function init(){await loadFixed();const p=new URLSearchParams(location.search);GM_KEY=p.get('key')||localStorage.getItem('mq_gm_key')||'';if(p.get('key'))localStorage.setItem('mq_gm_key',p.get('key'));if(!backendUrl()){const w=document.getElementById('configWarning');w.classList.remove('hidden');w.textContent='Backend URL not configured. Paste the Apps Script /exec URL into backend-config.js.';return;}if(!GM_KEY){GM_KEY=prompt('Enter Game Master access key:')||'';if(GM_KEY)localStorage.setItem('mq_gm_key',GM_KEY);}if(!GM_KEY)return;await refresh();setInterval(()=>{if(!busy&&!document.querySelector('#gmActions input:focus,#gmActions select:focus'))refresh(true);},12000);}
 function setConn(c,t){const e=document.getElementById('conn');e.className='pill '+c;e.textContent=t;}
 async function refresh(silent=false){try{if(!silent)setConn('warn','Updating…');const x=await jsonp('gmState',{key:GM_KEY});STATE=x;render();setConn('ok','Live');}catch(e){setConn('error',e.message);}}
-function render(){document.getElementById('phase').textContent=phaseLabel(STATE.phase);document.getElementById('serverTime').textContent=(STATE.fullState&&STATE.fullState.testNow?'TEST ':'Server ')+fmtTime(STATE.serverTime);document.getElementById('revision').textContent='Revision '+STATE.revision;renderScores(STATE,document.getElementById('scores'));renderBonus(STATE,document.getElementById('bonus'));renderLog(STATE,document.getElementById('log'));renderBoard();renderActions();if(!MAPOBJ)MAPOBJ=createMap('map',STATE);else updateMap(MAPOBJ,STATE);}
+function render(){document.getElementById('phase').textContent=phaseLabel(STATE.phase);document.getElementById('serverTime').textContent=(STATE.fullState&&STATE.fullState.testNow?'TEST ':'Server ')+fmtTime(STATE.serverTime);document.getElementById('revision').textContent='Revision '+STATE.revision;renderVersionStatus(STATE,document.getElementById('version'));renderScores(STATE,document.getElementById('scores'));renderBonus(STATE,document.getElementById('bonus'));renderLog(STATE,document.getElementById('log'));renderBoard();renderActions();if(!MAPOBJ)MAPOBJ=createMap('map',STATE);else updateMap(MAPOBJ,STATE);}
 function renderBoard(){
   const options=CHALLENGES.standard_challenges.map(x=>`<option value="${esc(x.id)}">${esc(x.title)}</option>`).join('')+`<option value="have_lunch">Have Lunch</option>`;
   document.getElementById('gmBoard').innerHTML=STATE.board.map(c=>`<div class="card active"><div class="card-title">${esc(nilData(c.nilId).name)}</div><div class="sub">Municipio ${nilData(c.nilId).game_municipio}</div>${cardChallengeHtml(c,null)}<div class="actions"><button class="btn secondary regen" data-id="${c.nilId}">Regenerate challenge</button></div><div class="controls-row" style="margin-top:7px"><select class="setChallenge" data-id="${c.nilId}">${options.replace(`value="${c.challengeId}"`,`value="${c.challengeId}" selected`)}</select><button class="btn secondary setChallengeBtn" data-id="${c.nilId}">Set exact challenge</button></div></div>`).join('');
@@ -28,7 +28,7 @@ function refreshDiagnostics(fs){
 function zombieDiagnostics(fs){
   const counts=STATE.scores.teams,leader=Math.max(...GAME.teams.map(t=>counts[t.id].rawClaims));
   let h='<h3>Zombie eligibility now</h3><div class="sub">A team tied for first gets nothing. A trailing team needs at least one used standard challenge level; Walking Tour and Lunch are not eligible.</div><div class="table-scroll"><table class="gm-table"><tr><th>Team</th><th>NILs</th><th>Used standard levels</th><th>If fired now</th></tr>';
-  GAME.teams.forEach(t=>{const team=fs.teams[t.id];let used=0;Object.values(team.inventory.standard||{}).forEach(levels=>Object.values(levels).forEach(v=>{if(v==='used')used++;}));const first=counts[t.id].rawClaims===leader;const outcome=first?'No restoration — tied for first':used?`Randomly restore 1 of ${used}`:'No restoration — no eligible used standard level';h+=`<tr><td>${esc(t.name)}</td><td>${counts[t.id].rawClaims}</td><td>${used}</td><td>${esc(outcome)}</td></tr>`;});
+  GAME.teams.forEach(t=>{const team=fs.teams[t.id];let used=0;CHALLENGES.standard_challenges.forEach(c=>(c.levels||[]).forEach(l=>{if(team.inventory.standard&&team.inventory.standard[c.id]&&team.inventory.standard[c.id][l.id]==='used')used++;}));const first=counts[t.id].rawClaims===leader;const outcome=first?'No restoration — tied for first':used?`Randomly restore 1 of ${used}`:'No restoration — no eligible used standard level';h+=`<tr><td>${esc(t.name)}</td><td>${counts[t.id].rawClaims}</td><td>${used}</td><td>${esc(outcome)}</td></tr>`;});
   h+='</table></div>';
   const z=STATE.lastZombieResult;
   if(z){const parts=(z.outcomes||[]).map(o=>{if(o.status==='restored')return `${teamName(o.teamId)}: ${challengeLevelLabel(o.challengeId,o.levelId)}`;if(o.status==='first_place')return `${teamName(o.teamId)}: first place`;return `${teamName(o.teamId)}: no eligible used standard level`;});h+=`<div class="saved-state saved"><strong>Last Zombie:</strong> ${esc(parts.join(' · ')||'No restorations')}</div>`;}
@@ -41,7 +41,7 @@ function renderActions(){
   const fs=STATE.fullState;
   const testClockValue=GM_DRAFT.testClock!==null?GM_DRAFT.testClock:localInputFromIso(fs.testNow);
   let h=`<h3>Immediate controls</h3><div class="actions"><button id="runRefresh" class="btn">Run refresh now</button><button id="zombie" class="btn">Activate next Zombie</button><button id="undo" class="btn danger">Undo last saved action</button></div>${refreshDiagnostics(fs)}${zombieDiagnostics(fs)}`;
-  h+=`<h3>Test clock</h3><div class="sub">For pre-game testing only. Your unsaved date/time is now preserved while this page auto-refreshes. When you set a future game time, all refreshes, Zombie events, Lunch expiry, or Sunday reset due by that time are processed immediately. Moving the clock backwards does not undo events already processed.</div><div class="controls-row"><input id="testClock" type="datetime-local" value="${esc(testClockValue)}"><button id="setClock" class="btn secondary">Set test clock</button><button id="clearClock" class="btn secondary">Use real time</button></div><div class="actions"><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.saturday_date}T09:59">Sat 09:59</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.saturday_date}T10:00">Sat 10:00</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.saturday_date}T14:15">Sat 14:15</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.saturday_date}T15:00">Sat 15:00</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.sunday_date}T08:29">Sun 08:29</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.sunday_date}T08:30">Sun 08:30</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.sunday_date}T09:00">Sun 09:00</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.sunday_date}T12:00">Sun 12:00</button></div>${fs.testNow?`<div class="saved-state saved">TEST CLOCK ACTIVE: ${esc(new Date(fs.testNow).toLocaleString())}</div>`:''}`;
+  h+=`<h3>Test clock</h3><div class="sub">For pre-game testing only. Your unsaved date/time is now preserved while this page auto-refreshes. When you set a future game time, all refreshes, Zombie events, Lunch expiry, or Sunday reset due by that time are processed immediately. Moving the clock backwards does not undo events already processed.</div><div class="controls-row"><input id="testClock" type="datetime-local" value="${esc(testClockValue)}"><button id="setClock" class="btn secondary">Set test clock</button><button id="clearClock" class="btn secondary">Use real time</button></div><div class="actions"><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.saturday_date}T09:59">Sat 09:59</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.saturday_date}T10:00">Sat 10:00</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.saturday_date}T11:00">Sat 11:00</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.saturday_date}T14:15">Sat 14:15</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.saturday_date}T15:00">Sat 15:00</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.sunday_date}T08:29">Sun 08:29</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.sunday_date}T08:30">Sun 08:30</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.sunday_date}T09:00">Sun 09:00</button><button type="button" class="btn secondary clockPreset" data-clock="${GAME.schedule.sunday_date}T12:00">Sun 12:00</button></div>${fs.testNow?`<div class="saved-state saved">TEST CLOCK ACTIVE: ${esc(new Date(fs.testNow).toLocaleString())}</div>`:''}`;
   h+=`<h3>Phase override</h3><div class="controls-row"><select id="phaseSel"><option value="">Automatic schedule</option>${['pre_game','saturday_live','saturday_rest','sunday_planning','sunday_live','ended'].map(p=>`<option value="${p}" ${fs.phaseOverride===p?'selected':''}>${phaseLabel(p)}</option>`).join('')}</select><button id="savePhase" class="btn secondary">Save</button></div>`;
   h+=`<h3>Transfer claimed NIL</h3><div class="controls-row"><select id="transferNil"><option value="">Choose claimed NIL</option>${Object.values(STATE.claims).sort((a,b)=>nilData(a.nilId).name.localeCompare(nilData(b.nilId).name)).map(c=>`<option value="${c.nilId}">${esc(nilData(c.nilId).name)} (${teamName(c.teamId)})</option>`).join('')}</select><select id="toTeam">${GAME.teams.map(t=>`<option value="${t.id}">${t.name}</option>`).join('')}</select><button id="transfer" class="btn secondary">Transfer</button></div>`;
   h+=`<h3>Opening status</h3><div class="table-scroll"><table class="gm-table"><tr><th>Team</th><th>Direction</th><th>Opened?</th></tr>${GAME.teams.map(t=>`<tr><td>${t.name}</td><td>${esc(fs.teams[t.id].openingDirection)}</td><td>${fs.teams[t.id].openingComplete?'Yes':'No'}</td></tr>`).join('')}</table></div>`;
@@ -63,25 +63,35 @@ async function gmAct(params,confirmFirst){
   if(confirmFirst&&!confirm('Apply this Game Master action to live state?'))return;
   try{
     busy=true;setConn('warn','Saving…');
+
+    if(params.action==='gmSetTestClock'){
+      // The test clock uses a JSONP mutation endpoint so the browser receives a
+      // direct authoritative response. This avoids the unreliable no-cors POST
+      // confirmation path that caused v0.4 test-clock failures.
+      const expected=params.testNow?new Date(params.testNow).toISOString():'';
+      const result=await jsonp('gmSetTestClock',{key:GM_KEY,testNow:params.testNow||''});
+      const returned=result.testNow?new Date(result.testNow).toISOString():'';
+      if(returned!==expected)throw new Error('The backend did not confirm the requested test time.');
+      STATE=await jsonp('gmState',{key:GM_KEY});
+      GM_DRAFT.testClock=null;
+      render();setConn('ok','Live');
+      return;
+    }
+
     const beforeRevision=STATE?Number(STATE.revision||0):0;
     await postAction(params);
-    let latest=null;
-    // Apps Script POSTs are sent no-cors, so poll the authoritative state rather than
-    // assuming an arbitrary 800 ms delay is long enough for the write to finish.
-    let confirmed=false;
+    let latest=null,confirmed=false;
+    // Other Apps Script POSTs remain no-cors, so poll authoritative state until the
+    // revision changes rather than relying on a fixed delay.
     for(let i=0;i<12;i++){
       await new Promise(r=>setTimeout(r,i===0?500:350));
       latest=await jsonp('gmState',{key:GM_KEY});
-      const revisionChanged=Number(latest.revision||0)>beforeRevision;
-      if(params.action==='gmSetTestClock'){
-        const actual=latest.fullState&&latest.fullState.testNow?new Date(latest.fullState.testNow).toISOString():'';
-        const expected=params.testNow?new Date(params.testNow).toISOString():'';
-        confirmed=revisionChanged && actual===expected;
-      } else confirmed=revisionChanged;
+      confirmed=Number(latest.revision||0)>beforeRevision;
       if(confirmed)break;
     }
     if(!latest||!confirmed)throw new Error('The backend did not confirm this Game Master change. Please try again.');
-    STATE=latest;if(params.action==='gmSetTestClock')GM_DRAFT.testClock=null;render();setConn('ok','Live');
+    STATE=latest;render();setConn('ok','Live');
   }catch(e){alert(e.message);setConn('error',e.message);}finally{busy=false;}
 }
+
 init();
