@@ -75,7 +75,7 @@
     {
       "id": "giro_di_piazza",
       "title": "Giro di Piazza",
-      "description": "Find distinct piazze or piazzette in the active NIL that are named after a real person who is primarily known for accomplishments in one of these categories. The location must be labelled as a Piazza or Piazzetta on Google Maps.",
+      "description": "Find distinct piazze or piazzette in the active NIL that are named after a real person who is primarily known for accomplishments in one of these categories. Use the Giro di Piazza OSM reference map to identify candidate piazze/piazzette. A location counts only if it is a genuine public square or piazza, not merely a street or road carrying a Piazza/Piazzetta name. Teams may use web searches, Wikipedia, or other reasonable sources to establish who the namesake was and why they qualify. If a location clearly appears to be a genuine piazza/piazzetta but is missing from the OSM reference map, ask the group chat.",
       "items": [
         "Religious figure",
         "Politician or activist",

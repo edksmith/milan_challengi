@@ -185,5 +185,5 @@
     "adjacency": "adjacency.json",
     "challenges": "challenge_config.json"
   },
-  "tracker_version": "1.1"
+  "tracker_version": "1.1.1"
 }
